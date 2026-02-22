@@ -107,8 +107,8 @@ abstract class BaseController extends Controller
         }
 
         // Share site config
-        $this->data['siteName'] = 'Quiz Shift';
-        $this->data['siteDescription'] = 'Aplikasi pembelajaran kaidah bahasa Arab menggunakan algoritma LCM';
+        $this->data['siteName'] = 'QuizShift';
+        $this->data['siteDescription'] = 'Aplikasi QuizShift untuk Penentuan Level Bahasa Inggris dengan Algoritma Fisher-Yates';
 
         // Share notifications (if any)
         $this->data['notifications'] = $this->getNotifications();

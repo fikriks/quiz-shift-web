@@ -27,14 +27,6 @@ Dashboard
 <div class="col-sm-3">
   <div class="card">
     <div class="card-body">
-      <h6 class="mb-3">Total Materi</h6>
-      <h2><?= $userStats['total_materi'] ?? 0 ?></h2>
-    </div>
-  </div>
-</div>
-<div class="col-sm-3">
-  <div class="card">
-    <div class="card-body">
       <h6 class="mb-3">Total Soal</h6>
       <h2><?= $userStats['total_soal'] ?? 0 ?></h2>
     </div>
@@ -43,8 +35,24 @@ Dashboard
 <div class="col-sm-3">
   <div class="card">
     <div class="card-body">
-      <h6 class="mb-3">Total Ujian</h6>
-      <h2><?= $userStats['total_ujian'] ?? 0 ?></h2>
+      <h6 class="mb-3">Total Level</h6>
+      <h2><?= $userStats['total_level'] ?? 0 ?></h2>
+    </div>
+  </div>
+</div>
+<div class="col-sm-3">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="mb-3">Total Peserta</h6>
+      <h2><?= $userStats['total_peserta'] ?? 0 ?></h2>
+    </div>
+  </div>
+</div>
+<div class="col-sm-12">
+  <div class="card">
+    <div class="card-body">
+      <h6 class="mb-3">Total Kuis Selesai</h6>
+      <h2><?= $userStats['total_kuis'] ?? 0 ?></h2>
     </div>
   </div>
 </div>

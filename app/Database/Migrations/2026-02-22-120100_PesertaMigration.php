@@ -4,23 +4,23 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class PenggunaMigration extends Migration
+class PesertaMigration extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'id_pengguna' => [
+            'id_peserta' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
-            'nama_pengguna' => [
+            'username' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 50,
                 'unique'     => true,
             ],
-            'kata_sandi' => [
+            'password' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
             ],
@@ -28,20 +28,25 @@ class PenggunaMigration extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 100,
             ],
-            'hak_akses' => [
-                'type'       => "ENUM('ADMIN', 'INSTRUKTUR')",
-                'default'    => 'INSTRUKTUR',
-                'null'       => false,
-            ],
-            'foto_profil' => [
+            'email' => [
                 'type'       => 'VARCHAR',
-                'constraint' => 255,
+                'constraint' => 100,
+                'unique'     => true,
+            ],
+            'no_hp' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 20,
                 'null'       => true,
             ],
+            'token' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+                'unique'     => true,
+            ],
             'status' => [
-                'type'       => "ENUM('AKTIF', 'NONAKTIF')",
+                'type'       => 'ENUM',
+                'constraint' => ['AKTIF', 'NONAKTIF'],
                 'default'    => 'AKTIF',
-                'null'       => false,
             ],
             'waktu_dibuat' => [
                 'type' => 'DATETIME',
@@ -49,16 +54,16 @@ class PenggunaMigration extends Migration
             ],
             'waktu_diubah' => [
                 'type' => 'DATETIME',
-                'null' => false,
+                'null' => true,
             ],
         ]);
 
-        $this->forge->addKey('id_pengguna', true);
-        $this->forge->createTable('pengguna');
+        $this->forge->addKey('id_peserta', true);
+        $this->forge->createTable('peserta');
     }
 
     public function down()
     {
-        $this->forge->dropTable('pengguna');
+        $this->forge->dropTable('peserta');
     }
 }

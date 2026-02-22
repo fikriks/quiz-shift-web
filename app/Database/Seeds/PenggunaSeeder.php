@@ -31,6 +31,23 @@ class PenggunaSeeder extends Seeder
             ],
         ];
 
-        $this->db->table('pengguna')->insertBatch($data);
+        $insertCount = 0;
+        foreach ($data as $user) {
+            // Check if user already exists
+            $exists = $this->db->table('pengguna')
+                              ->where('nama_pengguna', $user['nama_pengguna'])
+                              ->countAllResults() > 0;
+
+            if (!$exists) {
+                $this->db->table('pengguna')->insert($user);
+                $insertCount++;
+            }
+        }
+
+        if ($insertCount > 0) {
+            echo "✅ PenggunaSeeder completed! {$insertCount} users created.\n";
+        } else {
+            echo "⏭️  PenggunaSeeder skipped - users already exist.\n";
+        }
     }
 }

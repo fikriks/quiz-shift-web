@@ -32,7 +32,7 @@ class PenggunaModel extends Model
         'nama_pengguna' => 'required|min_length[3]|max_length[50]|is_unique[pengguna.nama_pengguna,id_pengguna,{id_pengguna}]',
         'kata_sandi'    => 'required|min_length[6]',
         'nama_lengkap'  => 'required|min_length[3]|max_length[100]',
-        'hak_akses'     => 'required|in_list[ADMIN,GURU]',
+        'hak_akses'     => 'required|in_list[ADMIN,INSTRUKTUR]',
         'status'        => 'required|in_list[AKTIF,NONAKTIF]',
         'foto_profil'   => 'permit_empty|max_size[foto_profil,2048]'
     ];

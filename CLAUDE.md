@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is **QuizShift** - a CodeIgniter 4 application for Arabic language grammar learning using the LCM algorithm. It's a web-based quiz and learning platform.
+This is **QuizShift** - a CodeIgniter 4 application for English grammar learning using the Fisher-Yates shuffle algorithm. It's a web-based quiz and learning platform.
 
 - **Framework**: CodeIgniter 4 (PHP 8.2+ required)
 - **Database**: MySQL (quiz_shift)
@@ -23,6 +23,23 @@ php spark migrate:rollback
 # Refresh all migrations
 php spark migrate:refresh
 ```
+
+### Database Seeders
+```bash
+# Run all seeders
+php spark db:seed
+
+# Run specific seeder
+php spark db:seed LevelSeeder
+php spark db:seed SoalSeeder
+php spark db:seed PesertaSeeder
+```
+
+**Available Seeders:**
+- `PenggunaSeeder` - Creates admin (admin123/123456789) and instruktur (instruktur123/123456789)
+- `LevelSeeder` - Creates 3 levels: BEGINNER (0-59), INTERMEDIATE (60-79), ADVANCED (80-100)
+- `SoalSeeder` - Creates 24 sample English grammar questions (8 per level)
+- `PesertaSeeder` - Creates 5 sample participants (peserta1-5/password123)
 
 ### Testing
 ```bash
@@ -65,7 +82,7 @@ $this->session->set('user', [
     'id_pengguna'   => int,
     'nama_pengguna' => string,  // username
     'nama_lengkap'  => string,  // full name
-    'hak_akses'     => 'ADMIN'|'GURU',  // role
+    'hak_akses'     => 'ADMIN'|'INSTRUKTUR',  // role
     'foto_profil'   => string|null,
     'logged_in'     => bool
 ]);
@@ -74,7 +91,7 @@ $this->session->set('user', [
 Additional session vars for compatibility:
 - `user_role`, `user_id`, `user_name`
 
-**Roles**: `ADMIN` (Administrator), `GURU` (Teacher/Instructor)
+**Roles**: `ADMIN` (Administrator), `INSTRUKTUR` (Instructor)
 
 **User Status**: `AKTIF` (active), `NONAKTIF` (inactive)
 
@@ -105,7 +122,7 @@ Views use CodeIgniter's template engine with sections:
 - Primary keys: `id_*` (e.g., `id_pengguna`)
 - Timestamps: `waktu_dibuat` (created_at), `waktu_diubah` (updated_at)
 - Status fields: ENUM('AKTIF', 'NONAKTIF')
-- Role field: `hak_akses` ENUM('ADMIN', 'GURU')
+- Role field: `hak_akses` ENUM('ADMIN', 'INSTRUKTUR')
 
 ### Model Conventions
 
@@ -125,6 +142,13 @@ Models should:
 Routes are defined in `app/Config/Routes.php`. Current structure:
 - Auth routes: `/login`, `/logout`
 - Dashboard: `/dashboard`
+- Level: `/level`, `/level/create`, `/level/edit/:num`, `/level/delete/:num`
+- Soal: `/soal`, `/soal/create`, `/soal/edit/:num`, `/soal/delete/:num`
+- Peserta: `/peserta`, `/peserta/create`, `/peserta/edit/:num`, `/peserta/delete/:num`
+- Hasil: `/hasil`, `/hasil/:num`, `/hasil/delete/:num`
+- API: `/api/auth/*`, `/api/soal/*`, `/api/kuis/*`, `/api/hasil/*`
+
+**Note**: All delete routes use POST method for security.
 
 ### Flash Messages
 
@@ -160,3 +184,12 @@ database.default.DBDriver = MySQLi
 - `form` - `form_open()`, `form_close()`, etc.
 - `html` - HTML helpers
 - `text` - Text manipulation helpers
+
+## UI Components
+
+### Level Badges
+
+Levels use color-coded badges for visual distinction:
+- **BEGINNER**: Blue (`bg-primary`)
+- **INTERMEDIATE**: Orange/Yellow (`bg-warning`)
+- **ADVANCED**: Red (`bg-danger`)

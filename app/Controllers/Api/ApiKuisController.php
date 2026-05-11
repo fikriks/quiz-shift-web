@@ -51,13 +51,38 @@ class ApiKuisController extends ResourceController
         $activeKuis = $this->kuisModel->getActiveKuis($peserta['id_peserta']);
 
         if ($activeKuis) {
-            // Return existing active quiz
+            // Get questions for the active quiz from detail_kuis
+            $detailKuis = $this->detailKuisModel->getDetailKuisWithSoal($activeKuis['id_kuis']);
+
+            // Format questions for client
+            $soalForClient = [];
+            foreach ($detailKuis as $detail) {
+                $soalForClient[] = [
+                    'id_soal'     => $detail['id_soal'],
+                    'pertanyaan'  => $detail['pertanyaan'],
+                    'opsi_a'      => $detail['opsi_a'],
+                    'opsi_b'      => $detail['opsi_b'],
+                    'opsi_c'      => $detail['opsi_c'],
+                    'opsi_d'      => $detail['opsi_d'],
+                    'id_level'    => $detail['id_level'],
+                    'level'       => $detail['nama_level'],
+                    'urutan_soal' => $detail['urutan_soal'],
+                ];
+            }
+
+            // Sort by urutan_soal
+            usort($soalForClient, function($a, $b) {
+                return $a['urutan_soal'] - $b['urutan_soal'];
+            });
+
             return $this->response->setJSON([
                 'status'  => 'success',
                 'message' => 'Melanjutkan kuis yang sedang berlangsung',
                 'data'    => [
                     'id_kuis'     => $activeKuis['id_kuis'],
                     'nama_kuis'   => $activeKuis['nama_kuis'],
+                    'soal'        => $soalForClient,
+                    'total_soal'  => count($soalForClient),
                     'waktu_mulai' => $activeKuis['waktu_mulai'],
                     'status'      => $activeKuis['status'],
                 ],
@@ -95,6 +120,18 @@ class ApiKuisController extends ResourceController
         // Create new quiz session
         $id_kuis = $this->kuisModel->createKuis($peserta['id_peserta']);
 
+        // Populate detail_kuis with shuffled questions
+        // Skip validation since we're only creating quiz structure, not saving answers yet
+        $this->detailKuisModel->skipValidation(true);
+        foreach ($shuffledSoal as $index => $soal) {
+            $this->detailKuisModel->insert([
+                'id_kuis'     => $id_kuis,
+                'id_soal'     => $soal['id_soal'],
+                'urutan_soal' => $soal['urutan_soal'],
+            ]);
+        }
+        $this->detailKuisModel->skipValidation(false);
+
         return $this->response->setJSON([
             'status'  => 'success',
             'message' => 'Kuis baru dimulai',
@@ -121,6 +158,12 @@ class ApiKuisController extends ResourceController
             ])->setStatusCode(401);
         }
 
+        $json = $this->request->getJSON();
+        $id_kuis = $json->id_kuis ?? null;
+        $id_soal = $json->id_soal ?? null;
+        $jawaban = $json->jawaban ?? null;
+        $urutan_soal = $json->urutan_soal ?? null;
+
         $rules = [
             'id_kuis'       => 'required|integer',
             'id_soal'       => 'required|integer',
@@ -128,18 +171,12 @@ class ApiKuisController extends ResourceController
             'urutan_soal'   => 'required|integer',
         ];
 
-        if (!$this->validate($rules)) {
+        if (!$id_kuis || !$id_soal || !$jawaban || $urutan_soal === null) {
             return $this->response->setJSON([
                 'status'  => 'error',
-                'message' => 'Validasi gagal',
-                'errors'  => $this->validator->getErrors(),
+                'message' => 'Data tidak lengkap',
             ])->setStatusCode(422);
         }
-
-        $id_kuis = $this->request->getPost('id_kuis');
-        $id_soal = $this->request->getPost('id_soal');
-        $jawaban = $this->request->getPost('jawaban');
-        $urutan_soal = $this->request->getPost('urutan_soal');
 
         // Verify quiz belongs to this peserta
         $kuis = $this->kuisModel->find($id_kuis);
@@ -211,19 +248,15 @@ class ApiKuisController extends ResourceController
             ])->setStatusCode(401);
         }
 
-        $rules = [
-            'id_kuis' => 'required|integer',
-        ];
+        $json = $this->request->getJSON();
+        $id_kuis = $json->id_kuis ?? null;
 
-        if (!$this->validate($rules)) {
+        if (!$id_kuis) {
             return $this->response->setJSON([
                 'status'  => 'error',
-                'message' => 'Validasi gagal',
-                'errors'  => $this->validator->getErrors(),
+                'message' => 'ID kuis wajib diisi',
             ])->setStatusCode(422);
         }
-
-        $id_kuis = $this->request->getPost('id_kuis');
 
         // Verify quiz belongs to this peserta
         $kuis = $this->kuisModel->find($id_kuis);
@@ -304,19 +337,15 @@ class ApiKuisController extends ResourceController
             ])->setStatusCode(401);
         }
 
-        $rules = [
-            'id_kuis' => 'required|integer',
-        ];
+        $json = $this->request->getJSON();
+        $id_kuis = $json->id_kuis ?? null;
 
-        if (!$this->validate($rules)) {
+        if (!$id_kuis) {
             return $this->response->setJSON([
                 'status'  => 'error',
-                'message' => 'Validasi gagal',
-                'errors'  => $this->validator->getErrors(),
+                'message' => 'ID kuis wajib diisi',
             ])->setStatusCode(422);
         }
-
-        $id_kuis = $this->request->getPost('id_kuis');
 
         // Verify quiz belongs to this peserta
         $kuis = $this->kuisModel->find($id_kuis);

@@ -50,7 +50,7 @@
     <div class="m-header">
       <a href="<?= site_url('dashboard') ?>" class="b-brand text-primary">
         <!-- ========   Change your logo from here   ============ -->
-        <img src="<?= base_url('assets/images/logo-dark.svg') ?>" class="img-fluid logo-lg" alt="QuizShift Logo">
+        <img src="<?= base_url('assets/images/logo.png') ?>" class="img-fluid logo-lg" alt="QuizShift Logo" style="width: 60px;">
       </a>
     </div>
     <div class="navbar-content">
@@ -155,14 +155,14 @@
         data-bs-auto-close="outside"
         aria-expanded="false"
       >
-        <img src="<?= $userPhoto ?? base_url('assets/images/user/avatar-2.jpg') ?>" alt="user-image" class="user-avtar">
+        <img src="https://ui-avatars.com/api/?name=<?= urlencode($currentUser['nama_lengkap'] ?? 'Guest') ?>&background=random&color=fff" alt="user-image" class="user-avtar">
         <span><?= esc($currentUser['nama_lengkap'] ?? 'Guest') ?></span>
       </a>
       <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
         <div class="dropdown-header">
           <div class="d-flex mb-1">
             <div class="flex-shrink-0">
-              <img src="<?= $userPhoto ?? base_url('assets/images/user/avatar-2.jpg') ?>" alt="user-image" class="user-avtar wid-35">
+              <img src="https://ui-avatars.com/api/?name=<?= urlencode($currentUser['nama_lengkap'] ?? 'Guest') ?>&background=random&color=fff" alt="user-image" class="user-avtar wid-35">
             </div>
             <div class="flex-grow-1 ms-3">
               <h6 class="mb-1"><?= esc($currentUser['nama_lengkap'] ?? 'Guest') ?></h6>

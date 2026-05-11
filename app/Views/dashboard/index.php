@@ -11,7 +11,7 @@ Dashboard
       <h5>Selamat Datang, <?= esc($currentUser['nama_lengkap'] ?? 'User') ?>!</h5>
     </div>
     <div class="card-body">
-      <p class="text-muted">Anda login sebagai <span class="badge badge-primary"><?= esc($currentUser['hak_akses'] ?? '-') ?></span></p>
+      <p class="text-muted">Anda login sebagai <span class="badge bg-primary"><?= esc($currentUser['hak_akses'] ?? '-') ?></span></p>
     </div>
   </div>
 </div>
@@ -74,11 +74,11 @@ Dashboard
         </tr>
         <tr>
           <td>Hak Akses</td>
-          <td>: <span class="badge badge-primary"><?= esc($currentUser['hak_akses'] ?? '-') ?></span></td>
+          <td>: <span class="badge bg-primary"><?= esc($currentUser['hak_akses'] ?? '-') ?></span></td>
         </tr>
         <tr>
           <td>Status</td>
-          <td>: <span class="badge badge-success">AKTIF</span></td>
+          <td>: <span class="badge bg-success">AKTIF</span></td>
         </tr>
       </table>
     </div>

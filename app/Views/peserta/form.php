@@ -50,16 +50,6 @@
 
         <?php if (isset($peserta)): ?>
         <div class="mb-3">
-          <label class="form-label">Token API</label>
-          <div class="input-group">
-            <input type="text" class="form-control" value="<?= esc($peserta['token']) ?>" readonly>
-            <button type="button" class="btn btn-outline-secondary" onclick="copyToken('<?= esc($peserta['token']) ?>')">
-              <i class="ti ti-copy"></i> Copy
-            </button>
-          </div>
-        </div>
-
-        <div class="mb-3">
           <label class="form-label">Status *</label>
           <select name="status" class="form-select" required>
             <option value="AKTIF" <?= (isset($peserta['status']) && $peserta['status'] === 'AKTIF') ? 'selected' : '' ?>>AKTIF</option>
@@ -81,13 +71,4 @@
   </div>
 </div>
 
-<script>
-function copyToken(token) {
-  navigator.clipboard.writeText(token).then(function() {
-    notyf.success('Token berhasil disalin!');
-  }, function() {
-    notyf.error('Gagal menyalin token');
-  });
-}
-</script>
 <?= $this->endSection() ?>

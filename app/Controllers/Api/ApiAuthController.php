@@ -21,21 +21,16 @@ class ApiAuthController extends ResourceController
      */
     public function login()
     {
-        $rules = [
-            'username' => 'required',
-            'password' => 'required',
-        ];
+        $json = $this->request->getJSON();
+        $username = $json->username ?? null;
+        $password = $json->password ?? null;
 
-        if (!$this->validate($rules)) {
+        if (!$username || !$password) {
             return $this->response->setJSON([
                 'status'  => 'error',
-                'message' => 'Validasi gagal',
-                'errors'  => $this->validator->getErrors(),
+                'message' => 'Username dan password wajib diisi',
             ])->setStatusCode(422);
         }
-
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
 
         $peserta = $this->pesertaModel->login($username, $password);
 

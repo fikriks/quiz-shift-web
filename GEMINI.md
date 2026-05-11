@@ -146,13 +146,9 @@ Routes are defined in `app/Config/Routes.php`. Current structure:
 - Dashboard: `/dashboard`
 - Level: `/level`, `/level/create`, `/level/edit/:num`, `/level/delete/:num`
 - Soal: `/soal`, `/soal/create`, `/soal/edit/:num`, `/soal/delete/:num`
-- Peserta: `/peserta`, `/peserta/create`, `/peserta/edit/:num`, `/peserta/delete/:num`, `/peserta/reset-token/:num`, `/peserta/token/:num`
-- Hasil: `/hasil`, `/hasil/:num`, `/hasil/delete/:num`, `/hasil/export/:num`
-- API:
-  - Auth: `/api/auth/login`, `/api/auth/logout`, `/api/auth/register`, `/api/auth/me`
-  - Soal: `/api/soal`, `/api/soal/levels`, `/api/soal/random`, `/api/soal/:num`
-  - Kuis: `/api/kuis/start`, `/api/kuis/submit`, `/api/kuis/finish`, `/api/kuis/active`, `/api/kuis/cancel`
-  - Hasil: `/api/hasil`, `/api/hasil/latest`, `/api/hasil/statistics`, `/api/hasil/:num`
+- Peserta: `/peserta`, `/peserta/create`, `/peserta/edit/:num`, `/peserta/delete/:num`
+- Hasil: `/hasil`, `/hasil/:num`, `/hasil/delete/:num`
+- API: `/api/auth/*`, `/api/soal/*`, `/api/kuis/*`, `/api/hasil/*`
 
 **Note**: All delete routes use POST method for security.
 

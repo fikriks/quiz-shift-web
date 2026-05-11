@@ -30,8 +30,9 @@ class PesertaModel extends Model
 
     // Validation
     protected $validationRules      = [
+        'id_peserta'  => 'permit_empty|integer',
         'username'    => 'required|min_length[3]|max_length[50]|is_unique[peserta.username,id_peserta,{id_peserta}]',
-        'password'    => 'required|min_length[6]',
+        'password'    => 'permit_empty|min_length[6]',
         'nama_lengkap' => 'required|min_length[3]|max_length[100]',
         'email'       => 'required|valid_email|is_unique[peserta.email,id_peserta,{id_peserta}]',
         'no_hp'       => 'permit_empty|max_length[20]',

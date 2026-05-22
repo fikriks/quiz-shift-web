@@ -81,7 +81,26 @@
           </a>
         </li>
 
+        <li class="pc-item">
+          <a href="<?= site_url('hasil') ?>" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-chart-bar"></i></span>
+            <span class="pc-mtext">Hasil Kuis</span>
+          </a>
+        </li>
+
         <?php if (($currentUser['hak_akses'] ?? '') === 'ADMIN'): ?>
+        <li class="pc-item pc-caption">
+          <label>Manajemen Pengguna</label>
+          <i class="ti ti-users"></i>
+        </li>
+
+        <li class="pc-item">
+          <a href="<?= site_url('pengguna') ?>" class="pc-link">
+            <span class="pc-micon"><i class="ti ti-user-check"></i></span>
+            <span class="pc-mtext">Pengguna</span>
+          </a>
+        </li>
+
         <li class="pc-item">
           <a href="<?= site_url('peserta') ?>" class="pc-link">
             <span class="pc-micon"><i class="ti ti-users"></i></span>
@@ -89,13 +108,6 @@
           </a>
         </li>
         <?php endif; ?>
-
-        <li class="pc-item">
-          <a href="<?= site_url('hasil') ?>" class="pc-link">
-            <span class="pc-micon"><i class="ti ti-chart-bar"></i></span>
-            <span class="pc-mtext">Hasil Kuis</span>
-          </a>
-        </li>
 
         <li class="pc-item pc-caption">
           <label>Akun</label>

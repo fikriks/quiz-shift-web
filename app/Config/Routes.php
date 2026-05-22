@@ -45,6 +45,14 @@ $routes->group('', ['filter' => 'csrf'], static function ($routes) {
     $routes->get('/peserta/reset-token/(:num)', 'PesertaController::resetToken/$1');
     $routes->get('/peserta/token/(:num)', 'PesertaController::showToken/$1');
 
+    // Pengguna routes (Hanya ADMIN)
+    $routes->get('/pengguna', 'PenggunaController::index');
+    $routes->get('/pengguna/create', 'PenggunaController::create');
+    $routes->post('/pengguna', 'PenggunaController::store');
+    $routes->get('/pengguna/edit/(:num)', 'PenggunaController::edit/$1');
+    $routes->post('/pengguna/update/(:num)', 'PenggunaController::update/$1');
+    $routes->post('/pengguna/delete/(:num)', 'PenggunaController::delete/$1');
+
     // Hasil routes
     $routes->get('/hasil', 'HasilController::index');
     $routes->get('/hasil/(:num)', 'HasilController::show/$1');

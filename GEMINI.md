@@ -147,6 +147,7 @@ Routes are defined in `app/Config/Routes.php`. Current structure:
 - Level: `/level`, `/level/create`, `/level/edit/:num`, `/level/delete/:num`
 - Soal: `/soal`, `/soal/create`, `/soal/edit/:num`, `/soal/delete/:num`
 - Peserta: `/peserta`, `/peserta/create`, `/peserta/edit/:num`, `/peserta/delete/:num`, `/peserta/reset-token/:num`, `/peserta/token/:num`
+- Pengguna: `/pengguna`, `/pengguna/create`, `/pengguna/edit/:num`, `/pengguna/delete/:num`
 - Hasil: `/hasil`, `/hasil/:num`, `/hasil/delete/:num`, `/hasil/export/:num`
 - API:
   - Auth: `/api/auth/login`, `/api/auth/logout`, `/api/auth/register`, `/api/auth/me`

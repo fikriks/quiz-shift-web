@@ -29,6 +29,7 @@ class PenggunaModel extends Model
 
     // Validation
     protected $validationRules      = [
+        'id_pengguna'   => 'permit_empty|integer',
         'nama_pengguna' => 'required|min_length[3]|max_length[50]|is_unique[pengguna.nama_pengguna,id_pengguna,{id_pengguna}]',
         'kata_sandi'    => 'required|min_length[6]',
         'nama_lengkap'  => 'required|min_length[3]|max_length[100]',

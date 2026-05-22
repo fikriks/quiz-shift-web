@@ -9,10 +9,7 @@
           <mxGeometry x="60" y="40" width="220" height="520" as="geometry" />
         </mxCell>
         <mxCell id="lane_sys" value="Sistem (AuthController / API)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="40" width="240" height="520" as="geometry" />
-        </mxCell>
-        <mxCell id="lane_db" value="Database (MySQL)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="520" y="40" width="200" height="520" as="geometry" />
+          <mxGeometry x="280" y="40" width="440" height="520" as="geometry" />
         </mxCell>
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
@@ -86,10 +83,7 @@
           <mxGeometry x="60" y="40" width="220" height="680" as="geometry" />
         </mxCell>
         <mxCell id="lane_sys" value="Sistem (SoalController)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="40" width="240" height="680" as="geometry" />
-        </mxCell>
-        <mxCell id="lane_db" value="Database (MySQL)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="520" y="40" width="200" height="680" as="geometry" />
+          <mxGeometry x="280" y="40" width="440" height="680" as="geometry" />
         </mxCell>
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
@@ -190,10 +184,7 @@
           <mxGeometry x="60" y="40" width="220" height="680" as="geometry" />
         </mxCell>
         <mxCell id="lane_sys" value="Sistem (LevelController)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="40" width="240" height="680" as="geometry" />
-        </mxCell>
-        <mxCell id="lane_db" value="Database (MySQL)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="520" y="40" width="200" height="680" as="geometry" />
+          <mxGeometry x="280" y="40" width="440" height="680" as="geometry" />
         </mxCell>
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
@@ -294,10 +285,7 @@
           <mxGeometry x="60" y="40" width="220" height="960" as="geometry" />
         </mxCell>
         <mxCell id="lane_s" value="Sistem Server (ApiKuisController)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="40" width="240" height="960" as="geometry" />
-        </mxCell>
-        <mxCell id="lane_db" value="Database (MySQL)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="520" y="40" width="200" height="960" as="geometry" />
+          <mxGeometry x="280" y="40" width="440" height="960" as="geometry" />
         </mxCell>
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
@@ -422,10 +410,7 @@
           <mxGeometry x="60" y="40" width="220" height="680" as="geometry" />
         </mxCell>
         <mxCell id="lane_sys" value="Sistem (PenggunaController)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="40" width="240" height="680" as="geometry" />
-        </mxCell>
-        <mxCell id="lane_db" value="Database (MySQL)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="520" y="40" width="200" height="680" as="geometry" />
+          <mxGeometry x="280" y="40" width="440" height="680" as="geometry" />
         </mxCell>
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
@@ -526,10 +511,7 @@
           <mxGeometry x="60" y="40" width="220" height="720" as="geometry" />
         </mxCell>
         <mxCell id="lane_sys" value="Sistem (PesertaController)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="40" width="240" height="720" as="geometry" />
-        </mxCell>
-        <mxCell id="lane_db" value="Database (MySQL)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="520" y="40" width="200" height="720" as="geometry" />
+          <mxGeometry x="280" y="40" width="440" height="720" as="geometry" />
         </mxCell>
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
@@ -636,10 +618,7 @@
           <mxGeometry x="60" y="40" width="220" height="360" as="geometry" />
         </mxCell>
         <mxCell id="lane_sys" value="Sistem (AuthController / API)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="280" y="40" width="240" height="360" as="geometry" />
-        </mxCell>
-        <mxCell id="lane_db" value="Session Manager" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
-          <mxGeometry x="520" y="40" width="200" height="360" as="geometry" />
+          <mxGeometry x="280" y="40" width="440" height="360" as="geometry" />
         </mxCell>
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />

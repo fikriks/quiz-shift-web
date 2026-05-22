@@ -330,18 +330,21 @@ Menjelaskan langkah validasi kredensial login hingga masuk ke sesi aplikasi yang
 
 ```mermaid
 flowchart TD
-    Mulai([Mulai]) --> BukaForm[Akses Halaman Login & Isi Form]
-    BukaForm --> KirimKredensial[Kirim Data Login - POST]
-    
-    subgraph ProsesServer ["Validasi Controller"]
-        KirimKredensial --> CekDB{Cek Kredensial di DB}
-        CekDB -- Cocok & Aktif --> BuatSesi[Bentuk Sesi Session / Token API]
-        CekDB -- Tidak Cocok / Nonaktif --> BeriGagal[Tampilkan Pesan Kegagalan Kredensial]
+    subgraph Pengguna ["Pengguna (User)"]
+        Mulai([Mulai]) --> BukaForm[Akses Halaman Login]
+        BukaForm --> IsiForm[Isi Form & Kirim Kredensial]
+        TampilGagal[Melihat Pesan Kegagalan] --> BukaForm
+        MasukDashboard[Masuk ke Dashboard / Panel Kuis] --> Selesai([Selesai])
     end
-    
-    BeriGagal --> BukaForm
-    BuatSesi --> MasukDashboard[Arahkan ke Dashboard / Panel Kuis]
-    MasukDashboard --> Selesai([Selesai])
+
+    subgraph Sistem ["Sistem (System)"]
+        IsiForm --> CekDB{Cek Kredensial di DB}
+        CekDB -- Cocok & Aktif --> BuatSesi[Bentuk Sesi Session / Token API]
+        CekDB -- Tidak Cocok / Nonaktif --> BeriGagal[Kirim Pesan Kegagalan Kredensial]
+        BeriGagal --> TampilGagal
+        BuatSesi --> ArahkanDashboard[Arahkan ke Dashboard / Panel Kuis]
+        ArahkanDashboard --> MasukDashboard
+    end
 ```
 
 #### 2. Activity Diagram - Kelola Data Master Level & Soal
@@ -349,27 +352,39 @@ Menjelaskan alur kerja Admin dan Instruktur dalam melakukan operasi CRUD (Create
 
 ```mermaid
 flowchart TD
-    Start([Mulai]) --> PilihMenu[Pilih Menu Master: Level / Soal]
-    PilihMenu --> RequestDaftar[Minta Tampilan Daftar Data]
-    RequestDaftar --> QueryTabel[Query Tabel `level` / `soal`]
-    QueryTabel --> TampilkanTabel[Sajikan Data dalam Tabel Dashboard]
-    TampilkanTabel --> KeputusanAksi{Pilih Operasi Data}
-    
-    %% Operasi Hapus
-    KeputusanAksi -- Hapus Data --> KonfirmasiHapus[Konfirmasi Penghapusan]
-    KonfirmasiHapus --> EksekusiHapus[Hapus Rekaman di DB - Cascade Check]
-    EksekusiHapus --> TampilkanSukses[Tampilkan Toast Notifikasi Sukses]
-    
-    %% Operasi Tambah / Edit
-    KeputusanAksi -- Tambah / Ubah Data --> IsiForm[Isi Form Masukan Data]
-    IsiForm --> ValidasiInput{Apakah Valid?}
-    ValidasiInput -- Tidak --> TampilkanPesanValidasi[Sajikan Pesan Kesalahan Form]
-    TampilkanPesanValidasi --> IsiForm
-    ValidasiInput -- Ya --> SimpanPerubahan[Simpan / Update Record ke DB]
-    SimpanPerubahan --> TampilkanSukses
-    
-    TampilkanSukses --> AktualisasiTabel[Refresh Halaman / Tabel Data]
-    AktualisasiTabel --> End([Selesai])
+    subgraph Pengguna ["Pengguna (Admin / Instruktur)"]
+        Start([Mulai]) --> PilihMenu[Pilih Menu Master: Level / Soal]
+        MelihatDaftar[Melihat Daftar Data pada Dashboard] --> KeputusanAksi{Pilih Operasi Data}
+        
+        %% Jalur Hapus
+        KeputusanAksi -- Hapus Data --> KonfirmasiHapus[Konfirmasi Penghapusan]
+        
+        %% Jalur Tambah / Edit
+        KeputusanAksi -- Tambah / Ubah Data --> IsiForm[Isi Form Masukan Data]
+        FormGagal[Melihat Pesan Kesalahan Form] --> IsiForm
+        
+        Selesai([Selesai])
+    end
+
+    subgraph Sistem ["Sistem"]
+        PilihMenu --> QueryTabel[Query Tabel `level` / `soal`]
+        QueryTabel --> TampilkanTabel[Sajikan Data dalam Tabel Dashboard]
+        TampilkanTabel --> MelihatDaftar
+        
+        %% Jalur Hapus
+        KonfirmasiHapus --> EksekusiHapus[Hapus Rekaman di DB - Cascade Check]
+        EksekusiHapus --> TampilkanSukses[Tampilkan Toast Notifikasi Sukses]
+        
+        %% Jalur Tambah / Edit
+        IsiForm --> ValidasiInput{Validasi Input Form}
+        ValidasiInput -- Tidak Valid --> TampilkanPesanValidasi[Kirim Pesan Kesalahan Form]
+        TampilkanPesanValidasi --> FormGagal
+        ValidasiInput -- Valid --> SimpanPerubahan[Simpan / Update Record ke DB]
+        SimpanPerubahan --> TampilkanSukses
+        
+        TampilkanSukses --> AktualisasiTabel[Refresh Halaman / Tabel Data]
+        AktualisasiTabel --> Selesai
+    end
 ```
 
 #### 3. Activity Diagram - Alur Ujian Online dengan Acak Fisher-Yates
@@ -377,32 +392,38 @@ Menjelaskan bagaimana peserta ujian menginisiasi kuis, mendapatkan soal acak, me
 
 ```mermaid
 flowchart TD
-    Mulai([Mulai]) --> KlikMulai[Klik Tombol 'Mulai Ujian']
-    KlikMulai --> CekSesiAktif{Ada Sesi Ujian Aktif?}
-    
-    %% Load Sesi Lama
-    CekSesiAktif -- Ada --> AmbilDetailSesiLama[Muat Soal Ujian Lama dari `detail_kuis` urutan_soal]
-    
-    %% Inisiasi Ujian Baru
-    CekSesiAktif -- Tidak Ada --> AmbilSoalAktif[Ambil Seluruh Soal Grammar Aktif dari DB]
-    AmbilSoalAktif --> TerapkanShuffle[Acak Soal Menggunakan Algoritma Fisher-Yates]
-    TerapkanShuffle --> SimpanKuisBaru[Simpan Header Sesi Kuis di DB]
-    SimpanKuisBaru --> SimpanDetailAcak[Simpan Butir-Butir Soal dengan Indeks Urutan Acak]
-    SimpanDetailAcak --> AmbilDetailSesiLama
-    
-    %% Siklus Pengerjaan Soal
-    AmbilDetailSesiLama --> SajikanSoal[Sajikan Soal Sekuensial Satu per Satu]
-    SajikanSoal --> JawabSoal[Peserta Memilih Opsi Jawaban]
-    JawabSoal --> SimpanJawaban[Kirim POST /api/kuis/submit]
-    SimpanJawaban --> KoreksiJawaban[Bandingkan Kunci Jawaban & Update is_benar]
-    KoreksiJawaban --> CekWaktuSelesai{Waktu Habis atau Klik Selesai?}
-    
-    CekWaktuSelesai -- Belum Selesai --> SajikanSoal
-    CekWaktuSelesai -- Ya --> HitungSkor[Hitung Total Benar & Konversi ke Persentase Skor]
-    HitungSkor --> CocokkanLevel[Cari Level Kemampuan pada DB Berdasarkan Skor]
-    CocokkanLevel --> UpdateSesiKuis[UPDATE Status Kuis='SELESAI', Nilai, & Level]
-    UpdateSesiKuis --> TampilkanSkorAkhir[Sajikan Skor Akhir & Predikat Level di Layar]
-    TampilkanSkorAkhir --> Akhir([Selesai])
+    subgraph Pengguna ["Pengguna (Peserta Ujian)"]
+        Mulai([Mulai]) --> KlikMulai[Klik Tombol 'Mulai Ujian']
+        MembacaSoal[Membaca Soal di Layar] --> JawabSoal[Memilih Opsi Jawaban]
+        MelihatHasil[Melihat Skor Akhir & Predikat Level] --> Akhir([Selesai])
+    end
+
+    subgraph Sistem ["Sistem"]
+        KlikMulai --> CekSesiAktif{Ada Sesi Ujian Aktif?}
+        
+        %% Sesi Aktif
+        CekSesiAktif -- Ada --> AmbilDetailSesiLama[Muat Soal dari detail_kuis]
+        
+        %% Sesi Baru
+        CekSesiAktif -- Tidak Ada --> AmbilSoalAktif[Ambil Soal Grammar Aktif dari DB]
+        AmbilSoalAktif --> TerapkanShuffle[Acak Soal dengan Fisher-Yates]
+        TerapkanShuffle --> SimpanKuisBaru[Simpan Sesi Kuis Baru & Detail Hasil Acak]
+        SimpanKuisBaru --> AmbilDetailSesiLama
+        
+        %% Pengerjaan
+        AmbilDetailSesiLama --> SajikanSoal[Sajikan Soal Sekuensial]
+        SajikanSoal --> MembacaSoal
+        JawabSoal --> SimpanJawaban[Koreksi Pilihan & Simpan ke DB]
+        SimpanJawaban --> CekWaktuSelesai{Waktu Habis atau Klik Selesai?}
+        
+        CekWaktuSelesai -- Belum Selesai --> SajikanSoal
+        CekWaktuSelesai -- Selesai --> HitungSkor[Hitung Total Benar & Konversi Skor %]
+        
+        HitungSkor --> CocokkanLevel[Cari Level Kemampuan Sesuai Skor]
+        CocokkanLevel --> UpdateSesiKuis[UPDATE Status Kuis = 'SELESAI']
+        UpdateSesiKuis --> TampilkanSkorAkhir[Kirim Skor & Predikat Level ke Layar]
+        TampilkanSkorAkhir --> MelihatHasil
+    end
 ```
 
 ---

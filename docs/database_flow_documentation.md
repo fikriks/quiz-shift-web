@@ -199,31 +199,38 @@ Shows the sequence of steps when a participant takes a test.
 
 ```mermaid
 flowchart TD
-    Start([Start]) --> ClickStart[Click Mulai Kuis]
-    ClickStart --> SendStart[POST /api/kuis/start]
-    SendStart --> CheckActive{Active Quiz Exists?}
-    
-    CheckActive -- Yes --> LoadActive[Load active detail_kuis]
-    LoadActive --> ReturnQuiz[Return Shuffled Quiz]
-    
-    CheckActive -- No --> LoadAllSoal[Query Active Questions]
-    LoadAllSoal --> FYAlgo[Apply Fisher-Yates Randomization]
-    FYAlgo --> SaveKuis[Save Kuis & DetailKuis rows]
-    SaveKuis --> ReturnQuiz
-    
-    ReturnQuiz --> ShowUI[Render Shuffled Questions Sequentially]
-    ShowUI --> SubmitAns[POST /api/kuis/submit]
-    SubmitAns --> VerifyAns[Assess is_benar & save in detail_kuis]
-    VerifyAns --> DoneLoop{All answered or finished?}
-    
-    DoneLoop -- No --> ShowUI
-    DoneLoop -- Yes --> ClickFinish[POST /api/kuis/finish]
-    
-    ClickFinish --> CalcScore[Compile Score % & query Level range]
-    CalcScore --> FinishKuis[Update Kuis status to SELESAI]
-    FinishKuis --> ReturnStats[Return final score & designated level]
-    ReturnStats --> ShowStats[Display results on Client Screen]
-    ShowStats --> End([End])
+    subgraph User ["User (Participant)"]
+        Start([Start]) --> ClickStart[Click Mulai Kuis]
+        ReadQuestion[Read Question on Screen] --> SubmitAns[Submit Answer Choice]
+        ShowStats[Display Results on Client Screen] --> End([End])
+    end
+
+    subgraph System ["System"]
+        ClickStart --> SendStart[POST /api/kuis/start]
+        SendStart --> CheckActive{Active Quiz Exists?}
+        
+        CheckActive -- Yes --> LoadActive[Load active detail_kuis]
+        
+        CheckActive -- No --> LoadAllSoal[Query Active Questions]
+        LoadAllSoal --> FYAlgo[Apply Fisher-Yates Randomization]
+        FYAlgo --> SaveKuis[Save Kuis & DetailKuis rows]
+        SaveKuis --> LoadActive
+        
+        LoadActive --> ReturnQuiz[Return Shuffled Quiz]
+        ReturnQuiz --> ShowUI[Render Shuffled Questions Sequentially]
+        ShowUI --> ReadQuestion
+        
+        SubmitAns --> VerifyAns[Assess is_benar & save in detail_kuis]
+        VerifyAns --> DoneLoop{All answered or finished?}
+        
+        DoneLoop -- No --> ShowUI
+        DoneLoop -- Yes --> ClickFinish[POST /api/kuis/finish]
+        
+        ClickFinish --> CalcScore[Compile Score % & query Level range]
+        CalcScore --> FinishKuis[Update Kuis status to SELESAI]
+        FinishKuis --> ReturnStats[Return final score & designated level]
+        ReturnStats --> ShowStats
+    end
 ```
 
 ### C. Entity Relationship Diagram (ERD)

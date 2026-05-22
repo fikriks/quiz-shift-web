@@ -148,21 +148,23 @@ class SoalController extends BaseController
         $this->requireAuth();
         $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
+        $tab = $this->request->getGet('tab') ?? 'ALL';
+
         $soal = $this->soalModel->find($id);
         if (!$soal) {
-            return redirect()->to(site_url('soal'))->with('error', 'Soal tidak ditemukan');
+            return redirect()->to(site_url('soal') . '?tab=' . $tab)->with('error', 'Soal tidak ditemukan');
         }
 
         // Authorization check for Instructor
         if ($this->currentUser['hak_akses'] === 'INSTRUKTUR' && $soal['jenjang'] !== $this->currentUser['jenjang']) {
-            return redirect()->to(site_url('soal'))->with('error', 'Anda tidak memiliki hak akses untuk menghapus soal ini');
+            return redirect()->to(site_url('soal') . '?tab=' . $tab)->with('error', 'Anda tidak memiliki hak akses untuk menghapus soal ini');
         }
 
         if ($this->soalModel->delete($id)) {
-            return redirect()->to(site_url('soal'))->with('success', 'Soal berhasil dihapus');
+            return redirect()->to(site_url('soal') . '?tab=' . $tab)->with('success', 'Soal berhasil dihapus');
         }
 
-        return redirect()->to(site_url('soal'))->with('error', 'Gagal menghapus soal');
+        return redirect()->to(site_url('soal') . '?tab=' . $tab)->with('error', 'Gagal menghapus soal');
     }
 
     public function toggleStatus($id)

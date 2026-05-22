@@ -147,6 +147,8 @@ class PenggunaController extends BaseController
         $this->requireAuth();
         $this->requireRole('ADMIN');
 
+        $tab = $this->request->getGet('tab') ?? 'ALL';
+
         // Defense-in-depth safety check
         if (!$this->currentUser || $this->currentUser['hak_akses'] !== 'ADMIN') {
             return redirect()->to(site_url('dashboard'))->with('error', 'Anda tidak memiliki hak akses');
@@ -156,7 +158,7 @@ class PenggunaController extends BaseController
 
         // Security check: Only allow deleting INSTRUKTUR, protect ADMIN
         if (!$pengguna || $pengguna['hak_akses'] !== 'INSTRUKTUR') {
-            return redirect()->to(site_url('pengguna'))->with('error', 'Pengguna tidak ditemukan atau tidak dapat dihapus');
+            return redirect()->to(site_url('pengguna') . '?tab=' . $tab)->with('error', 'Pengguna tidak ditemukan atau tidak dapat dihapus');
         }
 
         // Check if instructor has created any questions (soal)
@@ -164,13 +166,13 @@ class PenggunaController extends BaseController
         $soalCount = $soalModel->where('dibuat_oleh', $id)->countAllResults();
 
         if ($soalCount > 0) {
-            return redirect()->to(site_url('pengguna'))->with('error', "Instruktur tidak dapat dihapus karena telah membuat {$soalCount} soal");
+            return redirect()->to(site_url('pengguna') . '?tab=' . $tab)->with('error', "Instruktur tidak dapat dihapus karena telah membuat {$soalCount} soal");
         }
 
         if ($this->penggunaModel->delete($id)) {
-            return redirect()->to(site_url('pengguna'))->with('success', 'Instruktur berhasil dihapus');
+            return redirect()->to(site_url('pengguna') . '?tab=' . $tab)->with('success', 'Instruktur berhasil dihapus');
         }
 
-        return redirect()->to(site_url('pengguna'))->with('error', 'Gagal menghapus instruktur');
+        return redirect()->to(site_url('pengguna') . '?tab=' . $tab)->with('error', 'Gagal menghapus instruktur');
     }
 }

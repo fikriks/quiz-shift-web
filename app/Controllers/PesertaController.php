@@ -114,9 +114,11 @@ class PesertaController extends BaseController
         $this->requireAuth();
         $this->requireRole('ADMIN');
 
+        $tab = $this->request->getGet('tab') ?? 'ALL';
+
         $peserta = $this->pesertaModel->find($id);
         if (!$peserta) {
-            return redirect()->to(site_url('peserta'))->with('error', 'Peserta tidak ditemukan');
+            return redirect()->to(site_url('peserta') . '?tab=' . $tab)->with('error', 'Peserta tidak ditemukan');
         }
 
         // Check if participant has quiz history
@@ -124,14 +126,14 @@ class PesertaController extends BaseController
         $kuisCount = count($kuisModel->getKuisByPeserta($id));
 
         if ($kuisCount > 0) {
-            return redirect()->to(site_url('peserta'))->with('error', "Peserta tidak dapat dihapus karena masih memiliki {$kuisCount} riwayat kuis");
+            return redirect()->to(site_url('peserta') . '?tab=' . $tab)->with('error', "Peserta tidak dapat dihapus karena masih memiliki {$kuisCount} riwayat kuis");
         }
 
         if ($this->pesertaModel->delete($id)) {
-            return redirect()->to(site_url('peserta'))->with('success', 'Peserta berhasil dihapus');
+            return redirect()->to(site_url('peserta') . '?tab=' . $tab)->with('success', 'Peserta berhasil dihapus');
         }
 
-        return redirect()->to(site_url('peserta'))->with('error', 'Gagal menghapus peserta');
+        return redirect()->to(site_url('peserta') . '?tab=' . $tab)->with('error', 'Gagal menghapus peserta');
     }
 
     public function resetToken($id)

@@ -15,7 +15,7 @@ class MainSeeder extends Seeder
         $this->call('LevelSeeder');
 
         // Seed soal - depends on pengguna and level
-        $this->call('SoalSeeder');
+        //$this->call('SoalSeeder');
 
         // Seed peserta - independent table
         $this->call('PesertaSeeder');

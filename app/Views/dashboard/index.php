@@ -16,15 +16,7 @@ Dashboard
   </div>
 </div>
 
-<div class="col-sm-3">
-  <div class="card">
-    <div class="card-body">
-      <h6 class="mb-3">Total Pengguna</h6>
-      <h2><?= $userStats['total_users'] ?? 0 ?></h2>
-    </div>
-  </div>
-</div>
-<div class="col-sm-3">
+<div class="col-sm-4">
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Soal</h6>
@@ -32,7 +24,7 @@ Dashboard
     </div>
   </div>
 </div>
-<div class="col-sm-3">
+<div class="col-sm-4">
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Level</h6>
@@ -40,7 +32,7 @@ Dashboard
     </div>
   </div>
 </div>
-<div class="col-sm-3">
+<div class="col-sm-4">
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Peserta</h6>

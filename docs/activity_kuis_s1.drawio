@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Electron" modified="2026-05-22T00:56:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
+  <diagram id="diagram_id" name="Halaman-1">
+    <mxGraphModel dx="1200" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_p" value="Peserta Ujian (Front-End / Client)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="220" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_s" value="Sistem Server (ApiKuisController)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="240" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_db" value="Database (MySQL)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="40" width="200" height="960" as="geometry" />
+        </mxCell>
+        <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="step1" value="Klik Tombol 'Mulai Ujian'&#10;Send POST /api/kuis/start" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="90" y="130" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step2" value="Cek Apakah Ada Ujian&#10;yang Sedang Berlangsung" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="130" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dec_active" value="Ujian Aktif&#10;Ada?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="360" y="200" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="step_res" value="Muat Soal Ujian Lama&#10;sesuai `urutan_soal`" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="300" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_new" value="Ambil Semua Soal Aktif" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="370" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_db_soal" value="Query `soal` where status='AKTIF'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="540" y="370" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_fy" value="Acak Soal Menggunakan&#10;Algoritma Fisher-Yates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="450" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_save_q" value="Simpan Kuis &amp; Detail Kuis&#10;dengan Urutan Baru di DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="530" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_send" value="Kirim Soal Tanpa Jawaban Benar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="610" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_render" value="Tampilkan Soal secara Sekuensial&#10;(Satu per Satu)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="85" y="610" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_ans" value="Pilih Jawaban &amp; Simpan&#10;POST /api/kuis/submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="90" y="690" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_eval" value="Validasi &amp; Simpan Jawaban&#10;(Hitung is_benar dari kunci)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="690" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dec_done" value="Kuis Selesai / Waktu Habis?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="125" y="770" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="step_finish" value="Klik 'Selesai Ujian'&#10;POST /api/kuis/finish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="90" y="870" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_score" value="Kalkulasi Nilai Ujian&#10;Tentukan Level (Beginner/&#10;Intermediate/Advanced)&#10;Update Status = 'SELESAI'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="300" y="860" width="200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="step_show_res" value="Tampilkan Skor Akhir,&#10;Statistik &amp; Level Kemampuan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="85" y="940" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="385" y="950" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="start" target="step1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step1" target="step2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step2" target="dec_active">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_act_yes" value="Ya" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="dec_active" target="step_res">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_act_no" value="Tidak" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="dec_active" target="step_new">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_n1" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_new" target="step_db_soal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_n2" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_db_soal" target="step_fy">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_n3" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_fy" target="step_save_q">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_n4" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_save_q" target="step_send">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_r1" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_res" target="step_send">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_s1" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_send" target="step_render">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_l1" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_render" target="step_ans">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_l2" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_ans" target="step_eval">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_l3" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_eval" target="dec_done">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_loop_no" value="Tidak" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="dec_done" target="step_render">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_loop_yes" value="Ya" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="dec_done" target="step_finish">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_finish" target="step_score">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_score" target="step_show_res">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_show_res" target="end">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

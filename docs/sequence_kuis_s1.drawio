@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="Electron" modified="2026-05-22T00:56:00.000Z" agent="Mozilla/5.0" version="21.6.8" type="device">
+  <diagram id="diagram_id" name="Halaman-1">
+    <mxGraphModel dx="1200" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ll_p" value="Peserta Ujian&#10;(Client/UI)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ll_ctrl" value="ApiKuisController&#10;(API)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="210" y="40" width="130" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ll_fy" value="FisherYates&#10;(Pustaka/Library)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="380" y="40" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ll_mdl" value="Kuis/DetailKuisModel&#10;(Models)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="530" y="40" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ll_db" value="Database&#10;(MySQL)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="720" y="40" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="line_p" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
+          <mxGeometry x="110" y="90" width="1" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
+          <mxGeometry x="275" y="90" width="1" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="line_fy" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
+          <mxGeometry x="435" y="90" width="1" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="line_mdl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
+          <mxGeometry x="605" y="90" width="1" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="line_db" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
+          <mxGeometry x="760" y="90" width="1" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="act_ctrl1" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="270" y="120" width="10" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="act_ctrl2" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="270" y="400" width="10" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="m1" value="1. start() request (Mulai Ujian)" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="110" y="120" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m1" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_p" target="act_ctrl1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m2" value="2. Ambil soal aktif dari DB" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="280" y="140" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2_db" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2_db_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m3" value="3. shuffleWithOrder(questions)" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="280" y="190" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m3" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_fy">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m3_ret" value="Mengembalikan array teracak" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="280" y="215" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m3_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_fy" target="act_ctrl1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m4" value="4. Simpan sesi kuis &amp; detail_kuis" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="280" y="240" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m4" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m4_db" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m4_db_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m4_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m5" value="5. 201 Created (Kirim soal teracak)" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="110" y="285" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m5" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_p">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m6" value="6. finish() request (Selesai Ujian)" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="110" y="400" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m6" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_p" target="act_ctrl2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m7" value="7. finishKuis(id_kuis)" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="280" y="420" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m7" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl2" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m8" value="8. Muat jawaban detail_kuis" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="605" y="440" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m8" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m8_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m9" value="9. Cari level berdasarkan skor" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="605" y="490" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m9" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m9_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m10" value="10. UPDATE status=SELESAI &amp; level" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="605" y="540" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m10" value="" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m10_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_mdl_ret_txt" value="Kembalikan nilai &amp; level kuis" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="280" y="570" width="320" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_mdl_ret" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m11" value="11. 200 OK (Kirim skor kuis &amp; Level)" style="text;align=center;verticalAlign=bottom;" vertex="1" parent="1">
+          <mxGeometry x="110" y="595" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m11" value="" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl2" target="line_p">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

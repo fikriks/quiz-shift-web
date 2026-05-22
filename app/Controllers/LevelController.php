@@ -16,7 +16,7 @@ class LevelController extends BaseController
     public function index()
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $this->data['page_title'] = 'Daftar Level';
         $this->data['levels'] = $this->levelModel->getAllOrdered();
@@ -27,7 +27,7 @@ class LevelController extends BaseController
     public function create()
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $this->data['page_title'] = 'Tambah Level Baru';
 
@@ -37,7 +37,7 @@ class LevelController extends BaseController
     public function store()
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $nilai_min = $this->request->getPost('nilai_min');
         $nilai_max = $this->request->getPost('nilai_max');
@@ -67,7 +67,7 @@ class LevelController extends BaseController
     public function edit($id)
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $this->data['page_title'] = 'Edit Level';
         $this->data['level'] = $this->levelModel->find($id);
@@ -82,7 +82,7 @@ class LevelController extends BaseController
     public function update($id)
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $nilai_min = $this->request->getPost('nilai_min');
         $nilai_max = $this->request->getPost('nilai_max');
@@ -112,7 +112,7 @@ class LevelController extends BaseController
     public function delete($id)
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $level = $this->levelModel->find($id);
         if (!$level) {

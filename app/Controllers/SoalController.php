@@ -111,7 +111,7 @@ class SoalController extends BaseController
     public function delete($id)
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $soal = $this->soalModel->find($id);
         if (!$soal) {
@@ -128,7 +128,7 @@ class SoalController extends BaseController
     public function toggleStatus($id)
     {
         $this->requireAuth();
-        $this->requireRole('ADMIN');
+        $this->requireAnyRole(['ADMIN', 'INSTRUKTUR']);
 
         $soal = $this->soalModel->find($id);
         if (!$soal) {

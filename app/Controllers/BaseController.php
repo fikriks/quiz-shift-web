@@ -134,7 +134,8 @@ abstract class BaseController extends Controller
     protected function requireAuth()
     {
         if (!$this->currentUser) {
-            return redirect()->to(site_url('login'))->with('error', 'Anda harus login terlebih dahulu');
+            $response = redirect()->to(site_url('login'))->with('error', 'Anda harus login terlebih dahulu');
+            throw new \CodeIgniter\HTTP\Exceptions\RedirectException($response);
         }
     }
 
@@ -146,7 +147,8 @@ abstract class BaseController extends Controller
         $this->requireAuth();
 
         if ($this->currentUser['hak_akses'] !== $role) {
-            return redirect()->to(site_url('dashboard'))->with('error', 'Anda tidak memiliki hak akses');
+            $response = redirect()->to(site_url('dashboard'))->with('error', 'Anda tidak memiliki hak akses');
+            throw new \CodeIgniter\HTTP\Exceptions\RedirectException($response);
         }
     }
     
@@ -171,7 +173,8 @@ abstract class BaseController extends Controller
         $this->requireAuth();
 
         if (!in_array($this->currentUser['hak_akses'], $roles)) {
-            return redirect()->to(site_url('dashboard'))->with('error', 'Anda tidak memiliki hak akses');
+            $response = redirect()->to(site_url('dashboard'))->with('error', 'Anda tidak memiliki hak akses');
+            throw new \CodeIgniter\HTTP\Exceptions\RedirectException($response);
         }
     }
 

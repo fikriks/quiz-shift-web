@@ -38,6 +38,12 @@ class PenggunaMigration extends Migration
                 'constraint' => 255,
                 'null'       => true,
             ],
+            'jenjang' => [
+                'type'       => 'ENUM',
+                'constraint' => ['ELEMENTARY', 'HIGH_SCHOOL'],
+                'null'       => true,
+                'default'    => null,
+            ],
             'status' => [
                 'type'       => "ENUM('AKTIF', 'NONAKTIF')",
                 'default'    => 'AKTIF',

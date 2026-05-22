@@ -19,6 +19,7 @@ class PesertaSeeder extends Seeder
                 'no_hp'        => '081234567890',
                 'token'        => $this->generateToken(),
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             [
@@ -29,6 +30,7 @@ class PesertaSeeder extends Seeder
                 'no_hp'        => '081234567891',
                 'token'        => $this->generateToken(),
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             [
@@ -39,6 +41,7 @@ class PesertaSeeder extends Seeder
                 'no_hp'        => '081234567892',
                 'token'        => $this->generateToken(),
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             [
@@ -49,6 +52,7 @@ class PesertaSeeder extends Seeder
                 'no_hp'        => '081234567893',
                 'token'        => $this->generateToken(),
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             [
@@ -59,6 +63,7 @@ class PesertaSeeder extends Seeder
                 'no_hp'        => '081234567894',
                 'token'        => $this->generateToken(),
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
         ];

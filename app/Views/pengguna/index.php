@@ -23,6 +23,7 @@ Daftar Pengguna
               <th width="50">No</th>
               <th>Username</th>
               <th>Nama Lengkap</th>
+              <th>Jenjang</th>
               <th>Status</th>
               <th width="350">Aksi</th>
             </tr>
@@ -30,7 +31,7 @@ Daftar Pengguna
           <tbody>
             <?php if (empty($pengguna ?? [])): ?>
               <tr>
-                <td colspan="5" class="text-center text-muted">Belum ada pengguna instruktur</td>
+                <td colspan="6" class="text-center text-muted">Belum ada pengguna instruktur</td>
               </tr>
             <?php else: ?>
               <?php $no = 1; foreach ($pengguna ?? [] as $p): ?>
@@ -38,6 +39,11 @@ Daftar Pengguna
                 <td><?= $no++ ?></td>
                 <td><?= esc($p['nama_pengguna']) ?></td>
                 <td><?= esc($p['nama_lengkap']) ?></td>
+                <td>
+                  <span class="badge <?= $p['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
+                    <?= $p['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
+                  </span>
+                </td>
                 <td>
                   <span class="badge <?= $p['status'] === 'AKTIF' ? 'bg-success' : 'bg-danger' ?>">
                     <?= esc($p['status']) ?>

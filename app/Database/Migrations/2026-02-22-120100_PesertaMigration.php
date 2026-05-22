@@ -48,6 +48,11 @@ class PesertaMigration extends Migration
                 'constraint' => ['AKTIF', 'NONAKTIF'],
                 'default'    => 'AKTIF',
             ],
+            'jenjang' => [
+                'type'       => 'ENUM',
+                'constraint' => ['ELEMENTARY', 'HIGH_SCHOOL'],
+                'default'    => 'ELEMENTARY',
+            ],
             'waktu_dibuat' => [
                 'type' => 'DATETIME',
                 'null' => false,

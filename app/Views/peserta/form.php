@@ -48,6 +48,14 @@
                  value="<?= esc($peserta['no_hp'] ?? old('no_hp')) ?>">
         </div>
 
+        <div class="mb-3">
+          <label class="form-label">Jenjang *</label>
+          <select name="jenjang" class="form-select" required>
+            <option value="ELEMENTARY" <?= (isset($peserta['jenjang']) && $peserta['jenjang'] === 'ELEMENTARY') || old('jenjang') === 'ELEMENTARY' ? 'selected' : '' ?>>ELEMENTARY LEVEL</option>
+            <option value="HIGH_SCHOOL" <?= (isset($peserta['jenjang']) && $peserta['jenjang'] === 'HIGH_SCHOOL') || old('jenjang') === 'HIGH_SCHOOL' ? 'selected' : '' ?>>HIGH SCHOOL LEVEL</option>
+          </select>
+        </div>
+
         <?php if (isset($peserta)): ?>
         <div class="mb-3">
           <label class="form-label">Status *</label>

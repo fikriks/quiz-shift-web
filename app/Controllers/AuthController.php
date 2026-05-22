@@ -83,6 +83,7 @@ class AuthController extends BaseController
             'nama_lengkap'  => $user['nama_lengkap'],
             'hak_akses'     => $user['hak_akses'],
             'foto_profil'   => $user['foto_profil'],
+            'jenjang'       => $user['jenjang'],
             'logged_in'     => true
         ];
 
@@ -137,7 +138,8 @@ class AuthController extends BaseController
                     'nama_pengguna' => $this->currentUser['nama_pengguna'],
                     'nama_lengkap'  => $this->currentUser['nama_lengkap'],
                     'hak_akses'     => $this->currentUser['hak_akses'],
-                    'foto_profil'   => $this->currentUser['foto_profil']
+                    'foto_profil'   => $this->currentUser['foto_profil'],
+                    'jenjang'       => $this->currentUser['jenjang'] ?? null
                 ]
             ]);
         } else {

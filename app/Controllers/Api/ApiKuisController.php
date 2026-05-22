@@ -89,13 +89,13 @@ class ApiKuisController extends ResourceController
             ])->setStatusCode(200);
         }
 
-        // Get all active questions
-        $allSoal = $this->soalModel->getActiveSoal();
+        // Get all active questions filtered by participant's jenjang
+        $allSoal = $this->soalModel->getActiveSoalByJenjang($peserta['jenjang']);
 
         if (empty($allSoal)) {
             return $this->response->setJSON([
                 'status'  => 'error',
-                'message' => 'Belum ada soal tersedia',
+                'message' => 'Belum ada soal tersedia untuk jenjang Anda',
             ])->setStatusCode(400);
         }
 

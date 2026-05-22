@@ -63,6 +63,7 @@ class PenggunaController extends BaseController
             'hak_akses'     => 'INSTRUKTUR', // Forced to INSTRUKTUR
             'status'        => 'AKTIF', // Default value on insert
             'foto_profil'   => null,
+            'jenjang'       => $this->request->getPost('jenjang'),
         ];
 
         if ($this->penggunaModel->insert($data)) {
@@ -120,6 +121,7 @@ class PenggunaController extends BaseController
             'nama_lengkap'  => $this->request->getPost('nama_lengkap'),
             'status'        => $this->request->getPost('status'),
             'hak_akses'     => 'INSTRUKTUR', // Forced to prevent role tampering
+            'jenjang'       => $this->request->getPost('jenjang'),
         ];
 
         // Handle password update optionally

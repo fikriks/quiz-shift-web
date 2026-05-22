@@ -22,6 +22,7 @@ class SoalModel extends Model
         'id_level',
         'dibuat_oleh',
         'status',
+        'jenjang',
     ];
 
     // Dates
@@ -41,6 +42,7 @@ class SoalModel extends Model
         'id_level'      => 'required|integer',
         'dibuat_oleh'   => 'required|integer',
         'status'        => 'required|in_list[AKTIF,NONAKTIF]',
+        'jenjang'       => 'required|in_list[ELEMENTARY,HIGH_SCHOOL]',
     ];
     protected $validationMessages   = [
         'pertanyaan' => [
@@ -78,6 +80,10 @@ class SoalModel extends Model
         'status' => [
             'required' => 'Status harus dipilih',
             'in_list'  => 'Status tidak valid',
+        ],
+        'jenjang' => [
+            'required' => 'Jenjang harus dipilih',
+            'in_list'  => 'Jenjang tidak valid',
         ],
     ];
     protected $skipValidation       = false;
@@ -135,6 +141,16 @@ class SoalModel extends Model
     public function getActiveSoal()
     {
         return $this->where('status', 'AKTIF')->findAll();
+    }
+
+    /**
+     * Get active questions by jenjang
+     */
+    public function getActiveSoalByJenjang($jenjang)
+    {
+        return $this->where('status', 'AKTIF')
+                    ->where('jenjang', $jenjang)
+                    ->findAll();
     }
 
     /**

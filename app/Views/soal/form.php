@@ -29,6 +29,19 @@
         </div>
 
         <div class="mb-3">
+          <label class="form-label">Jenjang *</label>
+          <?php if ($currentUser['hak_akses'] === 'INSTRUKTUR'): ?>
+            <input type="text" class="form-control" value="<?= esc($currentUser['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY LEVEL' : 'HIGH SCHOOL LEVEL') ?>" readonly>
+            <input type="hidden" name="jenjang" value="<?= esc($currentUser['jenjang']) ?>">
+          <?php else: ?>
+            <select name="jenjang" class="form-select" required>
+              <option value="ELEMENTARY" <?= (isset($soal['jenjang']) && $soal['jenjang'] === 'ELEMENTARY') || old('jenjang') === 'ELEMENTARY' ? 'selected' : '' ?>>ELEMENTARY LEVEL</option>
+              <option value="HIGH_SCHOOL" <?= (isset($soal['jenjang']) && $soal['jenjang'] === 'HIGH_SCHOOL') || old('jenjang') === 'HIGH_SCHOOL' ? 'selected' : '' ?>>HIGH SCHOOL LEVEL</option>
+            </select>
+          <?php endif; ?>
+        </div>
+
+        <div class="mb-3">
           <label class="form-label">Pertanyaan *</label>
           <textarea name="pertanyaan" class="form-control" rows="4" placeholder="Tulis pertanyaan di sini..." required><?= esc($soal['pertanyaan'] ?? old('pertanyaan')) ?></textarea>
           <?php if (isset($validation) && $validation->hasError('pertanyaan')): ?>

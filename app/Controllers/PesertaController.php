@@ -51,6 +51,7 @@ class PesertaController extends BaseController
             'email'        => $this->request->getPost('email'),
             'no_hp'        => $this->request->getPost('no_hp') ?: null,
             'status'       => 'AKTIF',
+            'jenjang'      => $this->request->getPost('jenjang'),
         ];
 
         // Ensure password is required for store
@@ -91,6 +92,7 @@ class PesertaController extends BaseController
             'email'        => $this->request->getPost('email'),
             'no_hp'        => $this->request->getPost('no_hp') ?: null,
             'status'       => $this->request->getPost('status'),
+            'jenjang'      => $this->request->getPost('jenjang'),
         ];
 
         // Only update password if provided

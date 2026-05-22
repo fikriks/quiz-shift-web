@@ -25,6 +25,7 @@ Daftar Peserta
               <th>Nama Lengkap</th>
               <th>Email</th>
               <th>No. HP</th>
+              <th>Jenjang</th>
               <th>Status</th>
               <th width="350">Aksi</th>
             </tr>
@@ -32,7 +33,7 @@ Daftar Peserta
           <tbody>
             <?php if (empty($peserta ?? [])): ?>
               <tr>
-                <td colspan="7" class="text-center text-muted">Belum ada peserta</td>
+                <td colspan="8" class="text-center text-muted">Belum ada peserta</td>
               </tr>
             <?php else: ?>
               <?php $no = 1; foreach ($peserta ?? [] as $p): ?>
@@ -42,6 +43,11 @@ Daftar Peserta
                 <td><?= esc($p['nama_lengkap']) ?></td>
                 <td><?= esc($p['email']) ?></td>
                 <td><?= esc($p['no_hp'] ?? '-') ?></td>
+                <td>
+                  <span class="badge <?= $p['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
+                    <?= $p['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
+                  </span>
+                </td>
                 <td>
                   <span class="badge <?= $p['status'] === 'AKTIF' ? 'bg-success' : 'bg-danger' ?>">
                     <?= esc($p['status']) ?>

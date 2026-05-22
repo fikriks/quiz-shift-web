@@ -36,6 +36,14 @@
                  value="<?= esc($pengguna['nama_lengkap'] ?? old('nama_lengkap')) ?>" required>
         </div>
 
+        <div class="mb-3">
+          <label class="form-label">Jenjang *</label>
+          <select name="jenjang" class="form-select" required>
+            <option value="ELEMENTARY" <?= (isset($pengguna['jenjang']) && $pengguna['jenjang'] === 'ELEMENTARY') || old('jenjang') === 'ELEMENTARY' ? 'selected' : '' ?>>ELEMENTARY LEVEL</option>
+            <option value="HIGH_SCHOOL" <?= (isset($pengguna['jenjang']) && $pengguna['jenjang'] === 'HIGH_SCHOOL') || old('jenjang') === 'HIGH_SCHOOL' ? 'selected' : '' ?>>HIGH SCHOOL LEVEL</option>
+          </select>
+        </div>
+
         <?php if (isset($pengguna)): ?>
         <div class="mb-3">
           <label class="form-label">Status *</label>

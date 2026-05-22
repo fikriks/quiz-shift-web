@@ -32,6 +32,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Articles
@@ -45,6 +46,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Prepositions
@@ -58,6 +60,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Plural nouns
@@ -71,6 +74,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Subject-verb agreement
@@ -84,6 +88,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Past simple
@@ -97,6 +102,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Possessive adjectives
@@ -110,6 +116,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Present Continuous
@@ -123,6 +130,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['BEGINNER'] ?? 1,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
 
@@ -138,6 +146,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Present Perfect
@@ -151,6 +160,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Modal verbs
@@ -164,6 +174,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Passive voice
@@ -177,6 +188,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Second Conditional
@@ -190,6 +202,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Reported speech
@@ -203,6 +216,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Gerund vs Infinitive
@@ -216,6 +230,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Relative clauses
@@ -229,6 +244,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['INTERMEDIATE'] ?? 2,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
 
@@ -244,6 +260,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Inversion
@@ -257,6 +274,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Subjunctive
@@ -270,6 +288,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Mixed Conditional
@@ -283,6 +302,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'ELEMENTARY',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Causative "have"
@@ -296,6 +316,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Perfect modals
@@ -309,6 +330,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Future Perfect
@@ -322,6 +344,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
             // Participle clauses
@@ -335,6 +358,7 @@ class SoalSeeder extends Seeder
                 'id_level'     => $levelMap['ADVANCED'] ?? 3,
                 'dibuat_oleh'  => $adminId,
                 'status'       => 'AKTIF',
+                'jenjang'      => 'HIGH_SCHOOL',
                 'waktu_dibuat' => date('Y-m-d H:i:s'),
             ],
         ];

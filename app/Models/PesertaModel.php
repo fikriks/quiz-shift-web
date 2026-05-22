@@ -20,6 +20,7 @@ class PesertaModel extends Model
         'no_hp',
         'token',
         'status',
+        'jenjang',
     ];
 
     // Dates
@@ -37,6 +38,7 @@ class PesertaModel extends Model
         'email'       => 'required|valid_email|is_unique[peserta.email,id_peserta,{id_peserta}]',
         'no_hp'       => 'permit_empty|max_length[20]',
         'status'      => 'required|in_list[AKTIF,NONAKTIF]',
+        'jenjang'     => 'required|in_list[ELEMENTARY,HIGH_SCHOOL]',
     ];
     protected $validationMessages   = [
         'username' => [
@@ -65,6 +67,10 @@ class PesertaModel extends Model
         'status' => [
             'required' => 'Status harus dipilih',
             'in_list'  => 'Status tidak valid',
+        ],
+        'jenjang' => [
+            'required' => 'Jenjang harus dipilih',
+            'in_list'  => 'Jenjang tidak valid',
         ],
     ];
     protected $skipValidation       = false;

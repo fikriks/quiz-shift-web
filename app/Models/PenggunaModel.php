@@ -18,7 +18,8 @@ class PenggunaModel extends Model
         'nama_lengkap',
         'hak_akses',
         'foto_profil',
-        'status'
+        'status',
+        'jenjang'
     ];
 
     // Dates
@@ -35,7 +36,8 @@ class PenggunaModel extends Model
         'nama_lengkap'  => 'required|min_length[3]|max_length[100]',
         'hak_akses'     => 'required|in_list[ADMIN,INSTRUKTUR]',
         'status'        => 'required|in_list[AKTIF,NONAKTIF]',
-        'foto_profil'   => 'permit_empty|max_size[foto_profil,2048]'
+        'foto_profil'   => 'permit_empty|max_size[foto_profil,2048]',
+        'jenjang'       => 'permit_empty|in_list[ELEMENTARY,HIGH_SCHOOL]'
     ];
     protected $validationMessages   = [
         'nama_pengguna' => [
@@ -64,6 +66,9 @@ class PenggunaModel extends Model
         'foto_profil' => [
             'max_size'      => 'Ukuran foto maksimal 2MB',
             'is_image'      => 'File harus berupa gambar (JPG, PNG, GIF)'
+        ],
+        'jenjang' => [
+            'in_list'       => 'Jenjang tidak valid'
         ]
     ];
     protected $skipValidation       = false;

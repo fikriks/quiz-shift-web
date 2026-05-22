@@ -47,6 +47,7 @@ Daftar Soal
             <tr>
               <th width="50">No</th>
               <th>Pertanyaan</th>
+              <th width="120">Jenjang</th>
               <th width="100">Level</th>
               <th width="100">Jawaban</th>
               <th width="100">Status</th>
@@ -56,7 +57,7 @@ Daftar Soal
           <tbody>
             <?php if (empty($soal ?? [])): ?>
               <tr>
-                <td colspan="6" class="text-center text-muted">Belum ada soal</td>
+                <td colspan="7" class="text-center text-muted">Belum ada soal</td>
               </tr>
             <?php else: ?>
               <?php
@@ -74,6 +75,11 @@ Daftar Soal
                 <td>
                   <div class="question-text"><?= character_limiter(strip_tags($s['pertanyaan']), 100) ?></div>
                 </td>
+                <td>
+                  <span class="badge <?= $s['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
+                    <?= $s['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
+                  </span>
+                </td>
                 <td><span class="badge <?= $badgeClass ?>"><?= esc($s['nama_level']) ?></span></td>
                 <td><span class="badge bg-primary"><?= esc($s['jawaban_benar']) ?></span></td>
                 <td>
@@ -86,12 +92,10 @@ Daftar Soal
                   <a href="<?= site_url('soal/edit/' . $s['id_soal']) ?>" class="btn btn-sm btn-outline-primary">
                     <i class="ti ti-pencil"></i> Edit
                   </a>
-                  <?php if ($currentUser['hak_akses'] === 'ADMIN'): ?>
                   <button type="button" class="btn btn-sm btn-outline-danger"
                           onclick="confirmDeleteSoal(<?= $s['id_soal'] ?>)">
                     <i class="ti ti-trash"></i> Hapus
                   </button>
-                  <?php endif; ?>
                   <?php endif; ?>
                 </td>
               </tr>

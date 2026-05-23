@@ -108,25 +108,39 @@ class KuisModel extends Model
         // Calculate percentage score
         $totalSoal = count($answers);
         $nilai = $totalSoal > 0 ? round(($totalBenar / $totalSoal) * 100) : 0;
+        $totalSalah = $totalSoal - $totalBenar;
 
         // Get level based on score
         $levelModel = new \App\Models\LevelModel();
         $level = $levelModel->getLevelByScore($nilai);
         $namaLevel = $level ? $level['nama_level'] : null;
 
+        $kuis = $this->find($id_kuis);
+        $waktuSelesai = date('Y-m-d H:i:s');
+
         // Update quiz
         $this->update($id_kuis, [
-            'waktu_selesai'    => date('Y-m-d H:i:s'),
+            'waktu_selesai'    => $waktuSelesai,
             'status'           => 'SELESAI',
             'total_nilai'      => $nilai,
             'level_ditetapkan' => $namaLevel,
         ]);
 
         return [
-            'nilai'       => $nilai,
-            'total_benar' => $totalBenar,
-            'total_soal'  => $totalSoal,
-            'level'       => $namaLevel,
+            'id_kuis'          => (int) $id_kuis,
+            'id_peserta'       => (int) $kuis['id_peserta'],
+            'total_nilai'      => (int) $nilai,
+            'persentase'       => (int) $nilai,
+            'level_ditetapkan' => $namaLevel,
+            'status'           => 'SELESAI',
+            'waktu_mulai'      => $kuis['waktu_mulai'],
+            'waktu_selesai'    => $waktuSelesai,
+            'total_benar'      => (int) $totalBenar,
+            'total_salah'      => (int) $totalSalah,
+            'total_soal'       => (int) $totalSoal,
+            // Keep for backwards compatibility
+            'nilai'            => (int) $nilai,
+            'level'            => $namaLevel,
         ];
     }
 
@@ -141,7 +155,13 @@ class KuisModel extends Model
             $builder = $builder->where('status', $status);
         }
 
-        return $builder->orderBy('waktu_dibuat', 'DESC')->findAll();
+        $rows = $builder->orderBy('waktu_dibuat', 'DESC')->findAll();
+
+        foreach ($rows as &$row) {
+            $row['persentase'] = (int) $row['total_nilai'];
+        }
+
+        return $rows;
     }
 
     /**
@@ -149,9 +169,13 @@ class KuisModel extends Model
      */
     public function getActiveKuis($id_peserta)
     {
-        return $this->where('id_peserta', $id_peserta)
+        $row = $this->where('id_peserta', $id_peserta)
                     ->where('status', 'BERLANGSUNG')
                     ->first();
+        if ($row) {
+            $row['persentase'] = isset($row['total_nilai']) ? (int) $row['total_nilai'] : 0;
+        }
+        return $row;
     }
 
     /**
@@ -159,10 +183,14 @@ class KuisModel extends Model
      */
     public function getKuisWithPeserta($id_kuis)
     {
-        return $this->select('kuis.*, peserta.nama_lengkap, peserta.email')
+        $row = $this->select('kuis.*, peserta.nama_lengkap, peserta.email')
                     ->join('peserta', 'peserta.id_peserta = kuis.id_peserta')
                     ->where('kuis.id_kuis', $id_kuis)
                     ->first();
+        if ($row) {
+            $row['persentase'] = (int) $row['total_nilai'];
+        }
+        return $row;
     }
 
     /**

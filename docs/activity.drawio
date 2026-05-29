@@ -17,25 +17,25 @@
         <mxCell id="step1" value="Buka Halaman Login&#10;&amp; Isi Username/Password" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="90" y="140" width="150" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step2" value="Kirim Data Kredensial&#10;(POST)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step2" value="Kirim Data Login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="90" y="220" width="150" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step3" value="Terima Data &amp; Cek Kecocokan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step3" value="Proses Validasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="220" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step4" value="Query Data Pengguna / Peserta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step4" value="Cek Data di Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="220" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dec1" value="Kredensial&#10;Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="360" y="300" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="step5" value="Buat Sesi / Simpan Token API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step5" value="Inisialisasi Sesi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="410" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step6" value="Tampilkan Dashboard / Halaman Kuis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="410" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_fail" value="Tampilkan Pesan Error&#10;(Gagal Login)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_fail" value="Tampilkan Pesan Gagal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="315" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
@@ -94,7 +94,7 @@
         <mxCell id="step2" value="Minta Daftar Data Soal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="330" y="130" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step3" value="Query data dari tabel `soal`" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step3" value="Ambil Data Soal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="550" y="130" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step4" value="Tampilkan Tabel Soal Grammar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -106,19 +106,19 @@
         <mxCell id="step_form" value="Isi Form Data Soal Baru / Ubah&#10;dan Klik Simpan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="400" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_val" value="Validasi Form Input Soal&#10;(Kunci Jawaban &amp; Pilihan)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_val" value="Validasi Input Soal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="400" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dec_val" value="Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="360" y="480" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="step_save" value="Simpan Record Soal ke DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_save" value="Simpan Data Soal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="495" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_del" value="Pilih Hapus &amp; Konfirmasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="590" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_exec_del" value="Hapus Data Soal dari DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_exec_del" value="Hapus Data Soal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="590" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_msg" value="Tampilkan Pesan Sukses&#10;dan Refresh Halaman Soal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -195,7 +195,7 @@
         <mxCell id="step2" value="Minta Daftar Data Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="330" y="130" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step3" value="Query data dari tabel `level`" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step3" value="Ambil Data Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="550" y="130" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step4" value="Tampilkan Tabel Level Nilai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -207,19 +207,19 @@
         <mxCell id="step_form" value="Isi Form Rentang Skor Baru/Ubah&#10;dan Klik Simpan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="400" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_val" value="Validasi Form (Cek Bentrokan&#10;Rentang nilai_min &amp; nilai_max)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_val" value="Validasi Rentang Skor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="400" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dec_val" value="Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="360" y="480" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="step_save" value="Simpan Tingkat Level ke DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_save" value="Simpan Data Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="495" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_del" value="Pilih Hapus Level Uji" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="590" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_exec_del" value="Hapus Data Level dari DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_exec_del" value="Hapus Data Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="590" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_msg" value="Tampilkan Pesan Sukses&#10;dan Refresh Halaman Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -290,7 +290,7 @@
         <mxCell id="start" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
           <mxGeometry x="150" y="80" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="step1" value="Klik Tombol 'Mulai Ujian'&#10;Send POST /api/kuis/start" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step1" value="Mulai Ujian" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="90" y="130" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step2" value="Cek Apakah Ada Ujian&#10;yang Sedang Berlangsung" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -305,13 +305,13 @@
         <mxCell id="step_new" value="Ambil Semua Soal Aktif" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="370" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_db_soal" value="Query `soal` where status='AKTIF'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_db_soal" value="Ambil Data Soal Aktif" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="370" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_fy" value="Acak Soal Menggunakan&#10;Algoritma Fisher-Yates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="450" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_save_q" value="Simpan Kuis &amp; Detail Kuis&#10;dengan Urutan Baru di DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_save_q" value="Simpan Sesi Kuis" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="530" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_send" value="Kirim Soal Tanpa Jawaban Benar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -320,19 +320,19 @@
         <mxCell id="step_render" value="Tampilkan Soal secara Sekuensial&#10;(Satu per Satu)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="610" width="170" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_ans" value="Pilih Jawaban &amp; Simpan&#10;POST /api/kuis/submit" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_ans" value="Kirim Jawaban" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="90" y="690" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_eval" value="Validasi &amp; Simpan Jawaban&#10;(Hitung is_benar dari kunci)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_eval" value="Proses Jawaban" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="690" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dec_done" value="Kuis Selesai / Waktu Habis?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="125" y="770" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="step_finish" value="Klik 'Selesai Ujian'&#10;POST /api/kuis/finish" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_finish" value="Selesaikan Ujian" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="90" y="870" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_score" value="Kalkulasi Nilai Ujian&#10;Tentukan Level (Beginner/&#10;Intermediate/Advanced)&#10;Update Status = 'SELESAI'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_score" value="Kalkulasi Nilai &amp; Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="300" y="860" width="200" height="70" as="geometry" />
         </mxCell>
         <mxCell id="step_show_res" value="Tampilkan Skor Akhir,&#10;Statistik &amp; Level Kemampuan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -421,7 +421,7 @@
         <mxCell id="step2" value="Minta Daftar Pengguna" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="330" y="130" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step3" value="Query data `pengguna`" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step3" value="Ambil Data Akun" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="550" y="130" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step4" value="Tampilkan Tabel Akun" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -433,19 +433,19 @@
         <mxCell id="step_form" value="Isi Form Data Akun Baru / Ubah&#10;dan Klik Simpan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="400" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_val" value="Validasi Form (Hash Password&#10;&amp; Cek Username Unik)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_val" value="Validasi Input Akun" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="400" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dec_val" value="Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="360" y="480" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="step_save" value="Simpan Akun ke DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_save" value="Simpan Data Akun" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="495" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_del" value="Pilih Hapus Akun &amp; Konfirmasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="590" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_exec_del" value="Hapus Data Akun dari DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_exec_del" value="Hapus Data Akun" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="590" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_msg" value="Tampilkan Pesan Sukses&#10;dan Refresh Halaman" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -522,7 +522,7 @@
         <mxCell id="step2" value="Minta Daftar Peserta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="330" y="130" width="140" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step3" value="Query data `peserta`" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step3" value="Ambil Data Peserta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="550" y="130" width="140" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step4" value="Tampilkan Tabel Peserta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -534,13 +534,13 @@
         <mxCell id="step_form" value="Isi Form Peserta &amp; Simpan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="400" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_val" value="Validasi Form (Email &amp;&#10;Username Unik)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_val" value="Validasi Input Peserta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="400" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="dec_val" value="Valid?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="360" y="480" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="step_save" value="Simpan Data Peserta ke DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_save" value="Simpan Data Peserta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="495" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_tok" value="Pilih Reset Token" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -549,7 +549,7 @@
         <mxCell id="step_gen" value="Generate Token Baru (Acak)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="580" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step_save_tok" value="UPDATE token peserta di DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step_save_tok" value="Simpan Token Baru" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="580" width="160" height="50" as="geometry" />
         </mxCell>
         <mxCell id="step_msg" value="Tampilkan Sukses &amp; Refresh" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -626,13 +626,13 @@
         <mxCell id="step1" value="Klik Tombol Logout" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="90" y="130" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step2" value="Minta Hapus Sesi / Token" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step2" value="Proses Keluar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="320" y="130" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step3" value="Hapus Session / Token" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step3" value="Hapus Data Sesi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="540" y="130" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="step4" value="Arahkan Kembali ke Form Login&#10;dengan Toast 'Berhasil Keluar'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+        <mxCell id="step4" value="Kembali ke Login" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="230" width="170" height="60" as="geometry" />
         </mxCell>
         <mxCell id="end" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
@@ -651,6 +651,107 @@
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
         <mxCell id="e5" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step4" target="end">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_act_mobile" name="Aplikasi Mobile">
+    <mxGraphModel dx="1200" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_mobile" value="Aplikasi Android (Mobile)" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="300" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_api" value="REST API / Server" style="swimlane;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#cccccc;startSize=30;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="40" width="300" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="start_m" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="195" y="80" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="step_splash" value="Splash Screen: Cek Sesi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="135" y="140" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="dec_session" value="Sesi Ada?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="170" y="220" width="80" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="step_login" value="Form Login Peserta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="135" y="310" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_val_api" value="Proses Validasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="435" y="310" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_dash" value="Dashboard Utama" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="135" y="420" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_start_quiz" value="Klik 'Mulai Ujian'" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="135" y="500" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_shuffle" value="Inisialisasi &amp; Shuffle Fisher-Yates" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="435" y="500" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_ques" value="Tampilkan Butir Soal &amp; Input Jawaban" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="135" y="600" width="150" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="step_submit" value="Submit Seluruh Jawaban" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="135" y="700" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_calc" value="Kalkulasi Nilai &amp; Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="435" y="700" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="step_result" value="Tampilkan Hasil &amp; Predikat Level" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="135" y="800" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="end_m" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="195" y="880" width="30" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_m1" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="start_m" target="step_splash">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m2" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_splash" target="dec_session">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m3" value="Tidak" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;labelBackgroundColor=none;" edge="1" parent="1" source="dec_session" target="step_login">
+          <mxGeometry x="-0.2" y="10" width="50" height="50" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_m4" value="Ya" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;labelBackgroundColor=none;" edge="1" parent="1" source="dec_session" target="step_dash">
+          <mxGeometry x="-0.8" y="-10" width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="250" />
+              <mxPoint x="320" y="445" />
+            </Array>
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_m5" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_login" target="step_val_api">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m6" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_val_api" target="step_dash">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m7" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_dash" target="step_start_quiz">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m8" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_start_quiz" target="step_shuffle">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m9" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_shuffle" target="step_ques">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m10" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_ques" target="step_submit">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m11" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_submit" target="step_calc">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m12" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_calc" target="step_result">
+          <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_m13" value="" style="endArrow=classic;html=1;rounded=1;strokeColor=#444444;strokeWidth=1.5;" edge="1" parent="1" source="step_result" target="end_m">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>

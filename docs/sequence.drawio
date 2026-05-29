@@ -5,20 +5,20 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ll_u" value="Pengguna&#10;(Aktor)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="40" width="100" height="50" as="geometry" />
+        <mxCell id="ll_u" value="Pengguna" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="95" y="40" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ll_ctrl" value="AuthController&#10;(Controller)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_ctrl" value=":AuthController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="200" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_mdl" value="PenggunaModel&#10;(Model)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_mdl" value=":PenggunaModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="360" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_db" value="Database&#10;(MySQL)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_db" value="Database" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="520" y="40" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="line_u" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
-          <mxGeometry x="110" y="90" width="1" height="300" as="geometry" />
+          <mxGeometry x="110" y="110" width="1" height="280" as="geometry" />
         </mxCell>
         <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
           <mxGeometry x="260" y="90" width="1" height="300" as="geometry" />
@@ -32,22 +32,22 @@
         <mxCell id="act_ctrl" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="255" y="120" width="10" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1" value="1. Masukkan kredensial login (POST)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
+        <mxCell id="e_m1" value="1. Masukkan Username &amp; Password" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2" value="2. authenticate(username, password)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
+        <mxCell id="e_m2" value="2. Validasi Akun" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3" value="3. SELECT * FROM pengguna" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_m3" value="3. Cek Data di Database" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3_ret" value="Kembalikan data / null" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_m3_ret" value="Data ditemukan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_ret" value="Verifikasi hash &amp; return User" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
+        <mxCell id="e_m2_ret" value="Login Berhasil" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1_ret" value="4. 302 Redirect ke /dashboard" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
+        <mxCell id="e_m1_ret" value="4. Masuk ke Dashboard" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>
@@ -58,20 +58,20 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ll_u" value="Admin / Instruktur&#10;(Aktor)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="40" width="120" height="50" as="geometry" />
+        <mxCell id="ll_u" value="Admin / Instruktur" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="105" y="40" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ll_ctrl" value="SoalController&#10;(Controller)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_ctrl" value=":SoalController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="210" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_mdl" value="SoalModel&#10;(Model)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_mdl" value=":SoalModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="370" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_db" value="Database&#10;(MySQL)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_db" value="Database" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="530" y="40" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="line_u" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
-          <mxGeometry x="120" y="90" width="1" height="300" as="geometry" />
+          <mxGeometry x="120" y="110" width="1" height="280" as="geometry" />
         </mxCell>
         <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
           <mxGeometry x="270" y="90" width="1" height="300" as="geometry" />
@@ -85,22 +85,22 @@
         <mxCell id="act_ctrl" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="265" y="120" width="10" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1" value="1. Simpan Soal Baru (store)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
+        <mxCell id="e_m1" value="1. Klik Simpan Soal" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2" value="2. insert(data_soal)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
+        <mxCell id="e_m2" value="2. Proses Simpan Data" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3" value="3. INSERT INTO `soal`" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_m3" value="3. Simpan ke Tabel Soal" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3_ret" value="Kembalikan Insert ID" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_m3_ret" value="Data Tersimpan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_ret" value="Kembalikan status sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
+        <mxCell id="e_m2_ret" value="Berhasil Simpan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1_ret" value="4. 302 Redirect ke /soal" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
+        <mxCell id="e_m1_ret" value="4. Kembali ke Daftar Soal" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>
@@ -111,20 +111,20 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ll_u" value="Admin / Instruktur&#10;(Aktor)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="40" width="120" height="50" as="geometry" />
+        <mxCell id="ll_u" value="Admin / Instruktur" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="105" y="40" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ll_ctrl" value="LevelController&#10;(Controller)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_ctrl" value=":LevelController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="210" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_mdl" value="LevelModel&#10;(Model)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_mdl" value=":LevelModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="370" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_db" value="Database&#10;(MySQL)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_db" value="Database" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="530" y="40" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="line_u" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
-          <mxGeometry x="120" y="90" width="1" height="300" as="geometry" />
+          <mxGeometry x="120" y="110" width="1" height="280" as="geometry" />
         </mxCell>
         <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
           <mxGeometry x="270" y="90" width="1" height="300" as="geometry" />
@@ -138,22 +138,22 @@
         <mxCell id="act_ctrl" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="265" y="120" width="10" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1" value="1. Simpan Level Baru (store)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
+        <mxCell id="e_m1" value="1. Klik Simpan Level" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2" value="2. insert(data_level)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
+        <mxCell id="e_m2" value="2. Proses Simpan Data" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3" value="3. INSERT INTO `level`" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_m3" value="3. Simpan ke Tabel Level" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3_ret" value="Kembalikan Insert ID" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_m3_ret" value="Data Tersimpan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_ret" value="Kembalikan status sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
+        <mxCell id="e_m2_ret" value="Berhasil Simpan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1_ret" value="4. 302 Redirect ke /level" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
+        <mxCell id="e_m1_ret" value="4. Kembali ke Daftar Level" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>
@@ -164,23 +164,23 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ll_p" value="Peserta Ujian&#10;(Client)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="40" width="100" height="50" as="geometry" />
+        <mxCell id="ll_p" value="Peserta Ujian" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="95" y="40" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ll_ctrl" value="ApiKuisController&#10;(API)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_ctrl" value=":ApiKuisController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="210" y="40" width="130" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_fy" value="FisherYates&#10;(Pustaka)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_fy" value=":FisherYates" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="380" y="40" width="110" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_mdl" value="Kuis/DetailModel&#10;(Models)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_mdl" value=":KuisModels" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="530" y="40" width="150" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_db" value="Database&#10;(MySQL)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_db" value="Database" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="720" y="40" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="line_p" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
-          <mxGeometry x="110" y="90" width="1" height="450" as="geometry" />
+          <mxGeometry x="110" y="110" width="1" height="430" as="geometry" />
         </mxCell>
         <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
           <mxGeometry x="275" y="90" width="1" height="450" as="geometry" />
@@ -200,58 +200,58 @@
         <mxCell id="act_ctrl2" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="270" y="320" width="10" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1" value="1. POST /api/kuis/start" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_p" target="act_ctrl1">
+        <mxCell id="e_m1" value="1. Mulai Ujian Baru" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_p" target="act_ctrl1">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2" value="2. Ambil soal grammar aktif" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_mdl">
+        <mxCell id="e_m2" value="2. Cari Soal Aktif" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_db" value="SELECT * FROM soal" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_m2_db" value="Cek Soal di Database" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_db_ret" value="Kembalikan array soal" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_m2_db_ret" value="Daftar Soal Ditemukan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_ret" value="Kembalikan array soal" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl1">
+        <mxCell id="e_m2_ret" value="Kirim Daftar Soal" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl1">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3" value="3. shuffleWithOrder(soal)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_fy">
+        <mxCell id="e_m3" value="3. Acak Soal (Fisher-Yates)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_fy">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3_ret" value="Mengembalikan array acak" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_fy" target="act_ctrl1">
+        <mxCell id="e_m3_ret" value="Hasil Soal Teracak" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_fy" target="act_ctrl1">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m4" value="4. Simpan sesi kuis &amp; detail" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_mdl">
+        <mxCell id="e_m4" value="4. Buat Sesi Ujian" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m4_db" value="INSERT INTO kuis &amp; detail" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_m4_db" value="Simpan Data Kuis" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m4_db_ret" value="Sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_m4_db_ret" value="Data Berhasil Disimpan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m4_ret" value="Sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl1">
+        <mxCell id="e_m4_ret" value="Konfirmasi Sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl1">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1_ret" value="5. Kirim soal tanpa kunci jawaban" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_p">
+        <mxCell id="e_m1_ret" value="5. Tampilkan Soal ke Peserta" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl1" target="line_p">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_f1" value="6. POST /api/kuis/finish" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_p" target="act_ctrl2">
+        <mxCell id="e_f1" value="6. Selesaikan Ujian" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_p" target="act_ctrl2">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_f2" value="7. finishKuis(id_kuis) [Kalkulasi &amp; Leveling]" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl2" target="line_mdl">
+        <mxCell id="e_f2" value="7. Hitung Nilai &amp; Predikat" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl2" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_f2_db" value="UPDATE kuis SET status=SELESAI" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_f2_db" value="Simpan Hasil Akhir" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_f2_db_ret" value="Sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_f2_db_ret" value="Status Selesai" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_f2_ret" value="Kembalikan skor &amp; level" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl2">
+        <mxCell id="e_f2_ret" value="Hasil Nilai &amp; Level" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl2">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_f1_ret" value="8. Kirim skor akhir &amp; level" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl2" target="line_p">
+        <mxCell id="e_f1_ret" value="8. Tampilkan Skor &amp; Level" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl2" target="line_p">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>
@@ -262,20 +262,20 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ll_u" value="Administrator&#10;(Aktor)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="40" width="120" height="50" as="geometry" />
+        <mxCell id="ll_u" value="Administrator" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="105" y="40" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ll_ctrl" value="PenggunaController&#10;(Controller)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_ctrl" value=":PenggunaController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="210" y="40" width="130" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_mdl" value="PenggunaModel&#10;(Model)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_mdl" value=":PenggunaModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="370" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_db" value="Database&#10;(MySQL)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_db" value="Database" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="530" y="40" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="line_u" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
-          <mxGeometry x="120" y="90" width="1" height="300" as="geometry" />
+          <mxGeometry x="120" y="110" width="1" height="280" as="geometry" />
         </mxCell>
         <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
           <mxGeometry x="275" y="90" width="1" height="300" as="geometry" />
@@ -289,22 +289,22 @@
         <mxCell id="act_ctrl" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="270" y="120" width="10" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1" value="1. Menyimpan pengguna baru (store)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
+        <mxCell id="e_m1" value="1. Klik Simpan Pengguna" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2" value="2. insert(data_pengguna)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
+        <mxCell id="e_m2" value="2. Proses Simpan Data" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3" value="3. INSERT INTO `pengguna`" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_m3" value="3. Simpan ke Tabel Pengguna" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3_ret" value="Kembalikan Insert ID" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_m3_ret" value="Data Tersimpan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_ret" value="Kembalikan status sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
+        <mxCell id="e_m2_ret" value="Berhasil Simpan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1_ret" value="4. 302 Redirect ke /pengguna" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
+        <mxCell id="e_m1_ret" value="4. Kembali ke Daftar Pengguna" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>
@@ -315,20 +315,20 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ll_u" value="Admin&#10;(Aktor)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="40" width="100" height="50" as="geometry" />
+        <mxCell id="ll_u" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="95" y="40" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ll_ctrl" value="PesertaController&#10;(Controller)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_ctrl" value=":PesertaController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="200" y="40" width="130" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_mdl" value="PesertaModel&#10;(Model)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_mdl" value=":PesertaModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="360" y="40" width="120" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_db" value="Database&#10;(MySQL)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_db" value="Database" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="520" y="40" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="line_u" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
-          <mxGeometry x="110" y="90" width="1" height="300" as="geometry" />
+          <mxGeometry x="110" y="110" width="1" height="280" as="geometry" />
         </mxCell>
         <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
           <mxGeometry x="265" y="90" width="1" height="300" as="geometry" />
@@ -342,22 +342,22 @@
         <mxCell id="act_ctrl" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="260" y="120" width="10" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1" value="1. Request token reset" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
+        <mxCell id="e_m1" value="1. Klik Reset Token" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2" value="2. resetToken(id_peserta)" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
+        <mxCell id="e_m2" value="2. Buat Token Baru" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3" value="3. UPDATE `peserta` SET token=..." style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
+        <mxCell id="e_m3" value="3. Update Token di Database" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="line_db">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m3_ret" value="Sukses" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
+        <mxCell id="e_m3_ret" value="Update Berhasil" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_db" target="line_mdl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_ret" value="Return new token data" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
+        <mxCell id="e_m2_ret" value="Token Terbuat" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_mdl" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1_ret" value="4. Tampilkan token baru" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
+        <mxCell id="e_m1_ret" value="4. Tampilkan Token ke Admin" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
       </root>
@@ -368,17 +368,17 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="ll_u" value="Pengguna&#10;(Aktor)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
-          <mxGeometry x="60" y="40" width="100" height="50" as="geometry" />
+        <mxCell id="ll_u" value="Pengguna" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="95" y="40" width="30" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="ll_ctrl" value="AuthController&#10;(Controller)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_ctrl" value=":AuthController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="200" y="40" width="130" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ll_lib" value="SessionStore&#10;(Library)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
+        <mxCell id="ll_lib" value=":SessionStore" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;align=center;" vertex="1" parent="1">
           <mxGeometry x="360" y="40" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="line_u" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
-          <mxGeometry x="110" y="90" width="1" height="220" as="geometry" />
+          <mxGeometry x="110" y="110" width="1" height="200" as="geometry" />
         </mxCell>
         <mxCell id="line_ctrl" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" vertex="1" parent="1">
           <mxGeometry x="265" y="90" width="1" height="220" as="geometry" />
@@ -389,17 +389,176 @@
         <mxCell id="act_ctrl" value="" style="fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="260" y="120" width="10" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1" value="1. POST /logout" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
+        <mxCell id="e_m1" value="1. Klik Keluar" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_u" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2" value="2. remove('user') / destroy()" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_lib">
+        <mxCell id="e_m2" value="2. Hapus Sesi Login" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_lib">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m2_ret" value="Sesi dihapus" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_lib" target="act_ctrl">
+        <mxCell id="e_m2_ret" value="Sesi Terhapus" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_lib" target="act_ctrl">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e_m1_ret" value="3. 302 Redirect ke /login" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
+        <mxCell id="e_m1_ret" value="3. Kembali ke Halaman Login" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="act_ctrl" target="line_u">
           <mxGeometry width="50" height="50" relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_seq_mobile" name="Aplikasi Mobile">
+    <mxGraphModel dx="1200" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="actor_user" value="Peserta" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="60" y="40" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="line_actor" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" edge="1" parent="1">
+          <mxGeometry x="75" y="110" width="1" height="630" as="geometry">
+            <mxPoint x="75" y="740" as="sourcePoint" />
+            <mxPoint x="75" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box_view" value=":QuizActivity" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="40" width="100" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="line_b" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" edge="1" parent="1" source="box_view">
+          <mxGeometry x="220" y="90" width="1" height="650" as="geometry">
+            <mxPoint x="220" y="740" as="sourcePoint" />
+            <mxPoint x="220" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box_vm" value=":QuizViewModel" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="line_cvm" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" edge="1" parent="1" source="box_vm">
+          <mxGeometry x="375" y="90" width="1" height="650" as="geometry">
+            <mxPoint x="375" y="740" as="sourcePoint" />
+            <mxPoint x="375" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box_repo" value=":QuizRepository" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="40" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="line_crepo" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" edge="1" parent="1" source="box_repo">
+          <mxGeometry x="535" y="90" width="1" height="650" as="geometry">
+            <mxPoint x="535" y="740" as="sourcePoint" />
+            <mxPoint x="535" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="box_api" value=":ApiKuisController" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="40" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="line_e" value="" style="endArrow=none;dashed=1;html=1;rounded=0;strokeColor=#888888;" edge="1" parent="1" source="box_api">
+          <mxGeometry x="700" y="90" width="1" height="650" as="geometry">
+            <mxPoint x="700" y="740" as="sourcePoint" />
+            <mxPoint x="700" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1" value="1. Klik Tombol Mulai" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_actor" target="line_b">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint y="140" as="offset" />
+            <Array as="points">
+              <mxPoint x="150" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m2" value="2. Inisialisasi Ujian" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_b" target="line_cvm">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m3" value="3. Buat Sesi Baru" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_cvm" target="line_crepo">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4" value="4. Minta Soal ke Server" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_crepo" target="line_e">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m4_ret" value="Daftar Soal Diterima" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_e" target="line_crepo">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="270" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m5" value="5. Tampilkan Pertanyaan" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_cvm" target="line_b">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m6" value="6. Jawab &amp; Lanjut" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_actor" target="line_b">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m7" value="7. Simpan Jawaban Sementara" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_b" target="line_crepo">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m8" value="8. Kirim Jawaban ke Server" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_crepo" target="line_e">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="430" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m9" value="9. Klik Tombol Selesai" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_actor" target="line_b">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m10" value="10. Selesaikan Sesi" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_b" target="line_cvm">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m11" value="11. Minta Skor Akhir" style="endArrow=classic;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_crepo" target="line_e">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m11_ret" value="Hasil &amp; Predikat Diterima" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_e" target="line_crepo">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="620" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m12" value="12. Tampilkan Hasil di Layar" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_cvm" target="line_b">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m13" value="13. Peserta Melihat Skor" style="endArrow=open;dashed=1;endSize=8;html=1;rounded=1;fontSize=10;" edge="1" parent="1" source="line_b" target="line_actor">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="710" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>

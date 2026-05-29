@@ -54,9 +54,9 @@ Dashboard
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Kuis Selesai</h6>
-      <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between">
-        <h2 class="mb-3 mb-md-0"><?= $userStats['total_kuis'] ?? 0 ?></h2>
-        <div class="d-flex flex-wrap gap-4 text-muted small">
+      <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+        <h2 class="mb-0"><?= $userStats['total_kuis'] ?? 0 ?></h2>
+        <div class="d-flex flex-wrap gap-4 text-muted small mt-2 mt-md-0">
           <?php if (($currentUser['hak_akses'] ?? '') === 'ADMIN'): ?>
             <div>
               <span class="d-block text-uppercase fw-bold mb-1" style="font-size: 0.75rem;">Berdasarkan Jenjang</span>

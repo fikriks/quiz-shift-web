@@ -20,7 +20,17 @@ Dashboard
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Soal</h6>
-      <h2><?= $userStats['total_soal'] ?? 0 ?></h2>
+      <div class="d-flex align-items-end justify-content-between">
+        <h2><?= $userStats['total_soal'] ?? 0 ?></h2>
+        <div class="text-end text-muted small pb-1">
+          <?php if (($currentUser['hak_akses'] ?? '') === 'ADMIN'): ?>
+            Elementary: <strong><?= $userStats['soal_elementary'] ?? 0 ?></strong><br>
+            High School: <strong><?= $userStats['soal_high_school'] ?? 0 ?></strong>
+          <?php else: ?>
+            Jenjang: <strong><?= esc($currentUser['jenjang'] ?? '-') ?></strong>
+          <?php endif; ?>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -44,7 +54,24 @@ Dashboard
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Kuis Selesai</h6>
-      <h2><?= $userStats['total_kuis'] ?? 0 ?></h2>
+      <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between">
+        <h2 class="mb-3 mb-md-0"><?= $userStats['total_kuis'] ?? 0 ?></h2>
+        <div class="d-flex flex-wrap gap-4 text-muted small">
+          <?php if (($currentUser['hak_akses'] ?? '') === 'ADMIN'): ?>
+            <div>
+              <span class="d-block text-uppercase fw-bold mb-1" style="font-size: 0.75rem;">Berdasarkan Jenjang</span>
+              Elementary: <strong><?= $userStats['kuis_elementary'] ?? 0 ?></strong><br>
+              High School: <strong><?= $userStats['kuis_high_school'] ?? 0 ?></strong>
+            </div>
+          <?php endif; ?>
+          <div>
+            <span class="d-block text-uppercase fw-bold mb-1" style="font-size: 0.75rem;">Berdasarkan Level</span>
+            Beginner: <strong><?= $userStats['kuis_beginner'] ?? 0 ?></strong><br>
+            Intermediate: <strong><?= $userStats['kuis_intermediate'] ?? 0 ?></strong><br>
+            Advanced: <strong><?= $userStats['kuis_advanced'] ?? 0 ?></strong>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

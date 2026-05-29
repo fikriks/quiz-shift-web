@@ -90,14 +90,14 @@
 
         <?php if (($currentUser['hak_akses'] ?? '') === 'ADMIN'): ?>
         <li class="pc-item pc-caption">
-          <label>Manajemen Pengguna</label>
+          <label>Manajemen Instruktur</label>
           <i class="ti ti-users"></i>
         </li>
 
         <li class="pc-item">
           <a href="<?= site_url('pengguna') ?>" class="pc-link">
             <span class="pc-micon"><i class="ti ti-user-check"></i></span>
-            <span class="pc-mtext">Pengguna</span>
+            <span class="pc-mtext">Instruktur</span>
           </a>
         </li>
 

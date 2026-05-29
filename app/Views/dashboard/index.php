@@ -20,9 +20,9 @@ Dashboard
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Soal</h6>
-      <div class="d-flex align-items-end justify-content-between">
-        <h2><?= $userStats['total_soal'] ?? 0 ?></h2>
-        <div class="text-end text-muted small pb-1">
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="mb-0"><?= $userStats['total_soal'] ?? 0 ?></h2>
+        <div class="text-end text-muted small">
           <?php if (($currentUser['hak_akses'] ?? '') === 'ADMIN'): ?>
             Elementary: <strong><?= $userStats['soal_elementary'] ?? 0 ?></strong><br>
             High School: <strong><?= $userStats['soal_high_school'] ?? 0 ?></strong>
@@ -38,7 +38,7 @@ Dashboard
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Level</h6>
-      <h2><?= $userStats['total_level'] ?? 0 ?></h2>
+      <h2 class="mb-0"><?= $userStats['total_level'] ?? 0 ?></h2>
     </div>
   </div>
 </div>
@@ -46,7 +46,7 @@ Dashboard
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Peserta</h6>
-      <h2><?= $userStats['total_peserta'] ?? 0 ?></h2>
+      <h2 class="mb-0"><?= $userStats['total_peserta'] ?? 0 ?></h2>
     </div>
   </div>
 </div>

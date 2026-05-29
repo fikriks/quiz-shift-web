@@ -196,12 +196,17 @@ class KuisModel extends Model
     /**
      * Get all completed quizzes
      */
-    public function getCompletedKuis()
+    public function getCompletedKuis($jenjang = null)
     {
-        return $this->select('kuis.*, peserta.nama_lengkap, peserta.email')
+        $builder = $this->select('kuis.*, peserta.nama_lengkap, peserta.email, peserta.jenjang')
                     ->join('peserta', 'peserta.id_peserta = kuis.id_peserta')
-                    ->where('kuis.status', 'SELESAI')
-                    ->orderBy('kuis.waktu_selesai', 'DESC')
+                    ->where('kuis.status', 'SELESAI');
+
+        if ($jenjang !== null) {
+            $builder->where('peserta.jenjang', $jenjang);
+        }
+
+        return $builder->orderBy('kuis.waktu_selesai', 'DESC')
                     ->findAll();
     }
 

@@ -28,8 +28,8 @@ class HasilController extends BaseController
         if ($this->currentUser['hak_akses'] === 'ADMIN') {
             $this->data['hasil'] = $this->kuisModel->getCompletedKuis();
         } else {
-            // INSTRUKTUR can only see results (no filtering needed for now)
-            $this->data['hasil'] = $this->kuisModel->getCompletedKuis();
+            // INSTRUKTUR can only see results based on their own jenjang
+            $this->data['hasil'] = $this->kuisModel->getCompletedKuis($this->currentUser['jenjang']);
         }
 
         return view('hasil/index', $this->data);

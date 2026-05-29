@@ -61,7 +61,7 @@
             <?= form_open(site_url('login')) ?>
             <div class="form-group mb-3">
               <label class="form-label">Username</label>
-              <input type="text" name="nama_pengguna" class="form-control" placeholder="Username" required>
+              <input type="text" name="nama_pengguna" value="<?= esc(old('nama_pengguna')) ?>" class="form-control" placeholder="Username" required>
             </div>
             <div class="form-group mb-3">
               <label class="form-label">Password</label>

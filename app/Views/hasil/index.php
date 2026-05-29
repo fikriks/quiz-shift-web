@@ -11,26 +11,41 @@ Hasil Kuis
       <h5>Daftar Hasil Kuis</h5>
     </div>
     <div class="card-body">
-      <?php if ($currentUser['hak_akses'] === 'ADMIN'): ?>
-      <!-- Nav Tabs -->
-      <ul class="nav nav-pills mb-3" id="jenjangFilterTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="tab-all" type="button" onclick="filterJenjang('ALL')">
-            <i class="ti ti-list"></i> Semua Jenjang
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tab-elementary" type="button" onclick="filterJenjang('ELEMENTARY')">
-            <i class="ti ti-mood-smile"></i> Elementary
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tab-highschool" type="button" onclick="filterJenjang('HIGH_SCHOOL')">
-            <i class="ti ti-school"></i> High School
-          </button>
-        </li>
-      </ul>
-      <?php endif; ?>
+      <div class="row align-items-center mb-3">
+        <div class="col">
+          <?php if ($currentUser['hak_akses'] === 'ADMIN'): ?>
+          <!-- Nav Tabs -->
+          <ul class="nav nav-pills" id="jenjangFilterTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="tab-all" type="button" onclick="filterJenjang('ALL')">
+                <i class="ti ti-list"></i> Semua Jenjang
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab-elementary" type="button" onclick="filterJenjang('ELEMENTARY')">
+                <i class="ti ti-mood-smile"></i> Elementary
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab-highschool" type="button" onclick="filterJenjang('HIGH_SCHOOL')">
+                <i class="ti ti-school"></i> High School
+              </button>
+            </li>
+          </ul>
+          <?php endif; ?>
+        </div>
+        <div class="col-sm-auto mt-2 mt-sm-0">
+          <div class="d-flex align-items-center">
+            <label class="me-2 mb-0 text-nowrap">Filter Level:</label>
+            <select id="levelFilter" class="form-select form-select-sm" style="width: 180px;" onchange="applyFilters()">
+              <option value="ALL">Semua Level</option>
+              <option value="BEGINNER">BEGINNER</option>
+              <option value="INTERMEDIATE">INTERMEDIATE</option>
+              <option value="ADVANCED">ADVANCED</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
       <div class="table-responsive">
         <table class="table table-hover">
@@ -54,7 +69,7 @@ Hasil Kuis
               </tr>
             <?php else: ?>
               <?php $no = 1; foreach ($hasil ?? [] as $h): ?>
-              <tr data-jenjang="<?= esc($h['jenjang']) ?>">
+              <tr data-jenjang="<?= esc($h['jenjang']) ?>" data-level="<?= esc($h['level_ditetapkan'] ?? '') ?>">
                 <td><?= $no++ ?></td>
                 <td><?= esc($h['nama_kuis']) ?></td>
                 <td><?= esc($h['nama_lengkap']) ?></td>
@@ -136,42 +151,55 @@ function confirmDeleteHasil(id) {
     );
 }
 
-function filterJenjang(jenjang) {
-    const tabsContainer = document.getElementById('jenjangFilterTabs');
-    if (!tabsContainer) return;
+let currentJenjang = 'ALL';
+let currentLevel = 'ALL';
 
-    // Update active class on tab buttons
-    tabsContainer.querySelectorAll('.nav-link').forEach(btn => {
-        btn.classList.remove('active');
-    });
+function filterJenjang(jenjang) {
+    currentJenjang = jenjang;
     
-    if (jenjang === 'ALL') {
-        const btn = document.getElementById('tab-all');
-        if (btn) btn.classList.add('active');
-        document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-            tr.style.display = '';
+    const tabsContainer = document.getElementById('jenjangFilterTabs');
+    if (tabsContainer) {
+        tabsContainer.querySelectorAll('.nav-link').forEach(btn => {
+            btn.classList.remove('active');
         });
-    } else if (jenjang === 'ELEMENTARY') {
-        const btn = document.getElementById('tab-elementary');
-        if (btn) btn.classList.add('active');
-        document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-            if (tr.getAttribute('data-jenjang') === 'ELEMENTARY') {
-                tr.style.display = '';
-            } else {
-                tr.style.display = 'none';
-            }
-        });
-    } else if (jenjang === 'HIGH_SCHOOL') {
-        const btn = document.getElementById('tab-highschool');
-        if (btn) btn.classList.add('active');
-        document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-            if (tr.getAttribute('data-jenjang') === 'HIGH_SCHOOL') {
-                tr.style.display = '';
-            } else {
-                tr.style.display = 'none';
-            }
-        });
+        
+        if (jenjang === 'ALL') {
+            const btn = document.getElementById('tab-all');
+            if (btn) btn.classList.add('active');
+        } else if (jenjang === 'ELEMENTARY') {
+            const btn = document.getElementById('tab-elementary');
+            if (btn) btn.classList.add('active');
+        } else if (jenjang === 'HIGH_SCHOOL') {
+            const btn = document.getElementById('tab-highschool');
+            if (btn) btn.classList.add('active');
+        }
     }
+    
+    // Persist in URL query param
+    const url = new URL(window.location.href);
+    url.searchParams.set('tab', jenjang);
+    window.history.replaceState(null, '', url);
+
+    applyFilters();
+}
+
+function applyFilters() {
+    const levelSelect = document.getElementById('levelFilter');
+    currentLevel = levelSelect ? levelSelect.value : 'ALL';
+    
+    document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
+        const rowJenjang = tr.getAttribute('data-jenjang');
+        const rowLevel = tr.getAttribute('data-level');
+        
+        const matchesJenjang = (currentJenjang === 'ALL' || rowJenjang === currentJenjang);
+        const matchesLevel = (currentLevel === 'ALL' || rowLevel === currentLevel);
+        
+        if (matchesJenjang && matchesLevel) {
+            tr.style.display = '';
+        } else {
+            tr.style.display = 'none';
+        }
+    });
     
     // Update row numbers dynamically
     let visibleIndex = 1;
@@ -188,30 +216,24 @@ function filterJenjang(jenjang) {
         if (!emptyRow) {
             const tr = document.createElement('tr');
             tr.id = 'empty-row';
-            tr.innerHTML = `<td colspan="9" class="text-center text-muted">Belum ada hasil kuis untuk jenjang ini</td>`;
+            tr.innerHTML = `<td colspan="9" class="text-center text-muted">Belum ada hasil kuis untuk filter ini</td>`;
             document.querySelector('tbody').appendChild(tr);
         } else {
             emptyRow.style.display = '';
+            emptyRow.querySelector('td').textContent = 'Belum ada hasil kuis untuk filter ini';
         }
     } else {
         if (emptyRow) {
             emptyRow.style.display = 'none';
         }
     }
-
-    // Persist in URL query param
-    const url = new URL(window.location.href);
-    url.searchParams.set('tab', jenjang);
-    window.history.replaceState(null, '', url);
 }
 
 // On page load, check URL parameter
 document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('jenjangFilterTabs')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const initialTab = urlParams.get('tab') || 'ALL';
-        filterJenjang(initialTab);
-    }
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialTab = urlParams.get('tab') || 'ALL';
+    filterJenjang(initialTab);
 });
 </script>
 <?= $this->endSection() ?>

@@ -38,7 +38,24 @@ Dashboard
   <div class="card">
     <div class="card-body">
       <h6 class="mb-3">Total Level</h6>
-      <h2 class="mb-0"><?= $userStats['total_level'] ?? 0 ?></h2>
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="mb-0"><?= $userStats['total_level'] ?? 0 ?></h2>
+        <div class="text-end text-muted small">
+          <?php if (!empty($levels)): ?>
+            <?php foreach ($levels as $lvl): ?>
+              <?php 
+                $badgeClass = 'bg-secondary';
+                if ($lvl['nama_level'] === 'BEGINNER') $badgeClass = 'bg-primary';
+                elseif ($lvl['nama_level'] === 'INTERMEDIATE') $badgeClass = 'bg-warning text-dark';
+                elseif ($lvl['nama_level'] === 'ADVANCED') $badgeClass = 'bg-danger';
+              ?>
+              <span class="badge <?= $badgeClass ?>"><?= esc($lvl['nama_level']) ?></span><br>
+            <?php endforeach; ?>
+          <?php else: ?>
+            -
+          <?php endif; ?>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -17,7 +17,7 @@ Daftar Level
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id="levelTable">
           <thead>
             <tr>
               <th width="50">No</th>
@@ -29,39 +29,33 @@ Daftar Level
             </tr>
           </thead>
           <tbody>
-            <?php if (empty($levels ?? [])): ?>
-              <tr>
-                <td colspan="6" class="text-center text-muted">Belum ada level</td>
-              </tr>
-            <?php else: ?>
-              <?php
-                $no = 1;
-                $badgeColors = [
-                    'BEGINNER'     => 'bg-primary',
-                    'INTERMEDIATE' => 'bg-warning',
-                    'ADVANCED'     => 'bg-danger'
-                ];
-                foreach ($levels ?? [] as $level):
-                  $badgeClass = $badgeColors[$level['nama_level']] ?? 'bg-secondary';
-              ?>
-              <tr>
-                <td><?= $no++ ?></td>
-                <td><span class="badge <?= $badgeClass ?>"><?= esc($level['nama_level']) ?></span></td>
-                <td><?= esc($level['deskripsi'] ?? '-') ?></td>
-                <td><?= esc($level['nilai_min']) ?></td>
-                <td><?= esc($level['nilai_max']) ?></td>
-                <td>
-                  <a href="<?= site_url('level/edit/' . $level['id_level']) ?>" class="btn btn-sm btn-outline-primary">
-                    <i class="ti ti-pencil"></i> Edit
-                  </a>
-                  <button type="button" class="btn btn-sm btn-outline-danger"
-                          onclick="confirmDeleteLevel(<?= $level['id_level'] ?>)">
-                    <i class="ti ti-trash"></i> Hapus
-                  </button>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-            <?php endif; ?>
+            <?php
+              $no = 1;
+              $badgeColors = [
+                  'BEGINNER'     => 'bg-primary',
+                  'INTERMEDIATE' => 'bg-warning',
+                  'ADVANCED'     => 'bg-danger'
+              ];
+              foreach ($levels ?? [] as $level):
+                $badgeClass = $badgeColors[$level['nama_level']] ?? 'bg-secondary';
+            ?>
+            <tr>
+              <td><?= $no++ ?></td>
+              <td><span class="badge <?= $badgeClass ?>"><?= esc($level['nama_level']) ?></span></td>
+              <td><?= esc($level['deskripsi'] ?? '-') ?></td>
+              <td><?= esc($level['nilai_min']) ?></td>
+              <td><?= esc($level['nilai_max']) ?></td>
+              <td>
+                <a href="<?= site_url('level/edit/' . $level['id_level']) ?>" class="btn btn-sm btn-outline-primary">
+                  <i class="ti ti-pencil"></i> Edit
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        onclick="confirmDeleteLevel(<?= $level['id_level'] ?>)">
+                  <i class="ti ti-trash"></i> Hapus
+                </button>
+              </td>
+            </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>
@@ -72,6 +66,23 @@ Daftar Level
 
 <?= $this->section('scripts') ?>
 <script>
+$(document).ready(function() {
+    let table = $('#levelTable').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
+        },
+        "columnDefs": [
+            { "orderable": false, "targets": [2, 5] } // disable sorting on deskripsi & aksi
+        ],
+        "drawCallback": function(settings) {
+            let api = this.api();
+            api.column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }
+    });
+});
+
 function confirmDeleteLevel(id) {
     toast.confirm(
         'Apakah Anda yakin ingin menghapus level ini? Data yang dihapus tidak dapat dikembalikan.',

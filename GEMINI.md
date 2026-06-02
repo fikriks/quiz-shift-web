@@ -200,5 +200,20 @@ Always use Bootstrap 5 utility classes. For badges, use `bg-*` instead of `badge
 ### Level Badges
 Levels use color-coded badges for visual distinction:
 - **BEGINNER**: Blue (`bg-primary`)
-- **INTERMEDIATE**: Orange/Yellow (`bg-warning`)
+- **INTERMEDIATE**: Orange/Yellow (`bg-warning` or `bg-warning text-dark`)
 - **ADVANCED**: Red (`bg-danger`)
+
+### DataTables Integration
+DataTables styles and scripts are loaded globally in `layouts/app.php` (along with jQuery).
+- To convert any table to a paginated, searchable DataTable, assign a unique `id` to the `<table>` element and initialize it inside the `scripts` section:
+  ```javascript
+  $(document).ready(function() {
+      $('#myTable').DataTable({
+          "language": {
+              "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
+          }
+      });
+  });
+  ```
+- Disable sorting on action/description columns using `"columnDefs": [ { "orderable": false, "targets": [index] } ]`.
+- For tables with client-side filters (e.g., tabs or select dropdowns), use the DataTable column search API (`table.column(index).search('query').draw()`) to keep pagination and row counts accurate and performant.

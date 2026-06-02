@@ -28,6 +28,7 @@
 
 <!-- Notyf CSS -->
 <link rel="stylesheet" href="<?= base_url('assets/css/plugins/notyf.min.css') ?>" />
+<link rel="stylesheet" href="<?= base_url('assets/css/plugins/dataTables.bootstrap5.min.css') ?>" />
 
 <!-- Additional Page-specific CSS -->
 <?= $this->renderSection('styles') ?>
@@ -90,7 +91,7 @@
 
         <?php if (($currentUser['hak_akses'] ?? '') === 'ADMIN'): ?>
         <li class="pc-item pc-caption">
-          <label>Manajemen Instruktur</label>
+          <label>Manajemen Pengguna</label>
           <i class="ti ti-users"></i>
         </li>
 
@@ -234,12 +235,16 @@
 
   <!-- [Page Specific JS] end -->
   <!-- Required Js -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="<?= base_url('assets/js/plugins/popper.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/plugins/simplebar.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/plugins/bootstrap.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/fonts/custom-font.js') ?>"></script>
   <script src="<?= base_url('assets/js/pcoded.js') ?>"></script>
   <script src="<?= base_url('assets/js/plugins/feather.min.js') ?>"></script>    
+  <!-- DataTables JS -->
+  <script src="<?= base_url('assets/js/plugins/jquery.dataTables.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/dataTables.bootstrap5.min.js') ?>"></script>
   <!-- Notyf JavaScript -->
   <script src="<?= base_url('assets/js/plugins/notyf.min.js') ?>"></script>
   <script src="<?= base_url('assets/js/toast-helper.js') ?>"></script>

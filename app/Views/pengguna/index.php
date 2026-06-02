@@ -36,7 +36,7 @@ Daftar Pengguna
       </ul>
 
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id="penggunaTable">
           <thead>
             <tr>
               <th width="50">No</th>
@@ -48,38 +48,32 @@ Daftar Pengguna
             </tr>
           </thead>
           <tbody>
-            <?php if (empty($pengguna ?? [])): ?>
-              <tr id="empty-row">
-                <td colspan="6" class="text-center text-muted">Belum ada pengguna instruktur</td>
-              </tr>
-            <?php else: ?>
-              <?php $no = 1; foreach ($pengguna ?? [] as $p): ?>
-              <tr data-jenjang="<?= esc($p['jenjang']) ?>">
-                <td><?= $no++ ?></td>
-                <td><?= esc($p['nama_pengguna']) ?></td>
-                <td><?= esc($p['nama_lengkap']) ?></td>
-                <td>
-                  <span class="badge <?= $p['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
-                    <?= $p['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
-                  </span>
-                </td>
-                <td>
-                  <span class="badge <?= $p['status'] === 'AKTIF' ? 'bg-success' : 'bg-danger' ?>">
-                    <?= esc($p['status']) ?>
-                  </span>
-                </td>
-                <td>
-                  <a href="<?= site_url('pengguna/edit/' . $p['id_pengguna']) ?>" class="btn btn-sm btn-outline-primary">
-                    <i class="ti ti-pencil"></i> Edit
-                  </a>
-                  <button type="button" class="btn btn-sm btn-outline-danger"
-                          onclick="confirmDeletePengguna(<?= $p['id_pengguna'] ?>)">
-                    <i class="ti ti-trash"></i> Hapus
-                  </button>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-            <?php endif; ?>
+            <?php $no = 1; foreach ($pengguna ?? [] as $p): ?>
+            <tr data-jenjang="<?= esc($p['jenjang']) ?>">
+              <td><?= $no++ ?></td>
+              <td><?= esc($p['nama_pengguna']) ?></td>
+              <td><?= esc($p['nama_lengkap']) ?></td>
+              <td>
+                <span class="badge <?= $p['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
+                  <?= $p['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
+                </span>
+              </td>
+              <td>
+                <span class="badge <?= $p['status'] === 'AKTIF' ? 'bg-success' : 'bg-danger' ?>">
+                  <?= esc($p['status']) ?>
+                </span>
+              </td>
+              <td>
+                <a href="<?= site_url('pengguna/edit/' . $p['id_pengguna']) ?>" class="btn btn-sm btn-outline-primary">
+                  <i class="ti ti-pencil"></i> Edit
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        onclick="confirmDeletePengguna(<?= $p['id_pengguna'] ?>)">
+                  <i class="ti ti-trash"></i> Hapus
+                </button>
+              </td>
+            </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>
@@ -90,6 +84,31 @@ Daftar Pengguna
 
 <?= $this->section('scripts') ?>
 <script>
+let table;
+
+$(document).ready(function() {
+    table = $('#penggunaTable').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
+        },
+        "columnDefs": [
+            { "orderable": false, "targets": [5] } // disable sorting on aksi
+        ],
+        "drawCallback": function(settings) {
+            let api = this.api();
+            api.column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }
+    });
+
+    if (document.getElementById('jenjangFilterTabs')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialTab = urlParams.get('tab') || 'ALL';
+        filterJenjang(initialTab);
+    }
+});
+
 function confirmDeletePengguna(id) {
     toast.confirm(
         'Apakah Anda yakin ingin menghapus instruktur ini? Data yang dihapus tidak dapat dikembalikan.',
@@ -121,7 +140,7 @@ function confirmDeletePengguna(id) {
 
 function filterJenjang(jenjang) {
     const tabsContainer = document.getElementById('jenjangFilterTabs');
-    if (!tabsContainer) return;
+    if (!tabsContainer || !table) return;
 
     // Update active class on tab buttons
     tabsContainer.querySelectorAll('.nav-link').forEach(btn => {
@@ -131,70 +150,21 @@ function filterJenjang(jenjang) {
     if (jenjang === 'ALL') {
         const btn = document.getElementById('tab-all');
         if (btn) btn.classList.add('active');
-        document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-            tr.style.display = '';
-        });
+        table.column(3).search('').draw();
     } else if (jenjang === 'ELEMENTARY') {
         const btn = document.getElementById('tab-elementary');
         if (btn) btn.classList.add('active');
-        document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-            if (tr.getAttribute('data-jenjang') === 'ELEMENTARY') {
-                tr.style.display = '';
-            } else {
-                tr.style.display = 'none';
-            }
-        });
+        table.column(3).search('ELEMENTARY').draw();
     } else if (jenjang === 'HIGH_SCHOOL') {
         const btn = document.getElementById('tab-highschool');
         if (btn) btn.classList.add('active');
-        document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-            if (tr.getAttribute('data-jenjang') === 'HIGH_SCHOOL') {
-                tr.style.display = '';
-            } else {
-                tr.style.display = 'none';
-            }
-        });
+        table.column(3).search('HIGH SCHOOL').draw();
     }
     
-    // Update row numbers dynamically
-    let visibleIndex = 1;
-    document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-        if (tr.style.display !== 'none') {
-            tr.querySelector('td:first-child').textContent = visibleIndex++;
-        }
-    });
-    
-    // Manage empty row
-    const emptyRow = document.getElementById('empty-row');
-    const totalVisible = Array.from(document.querySelectorAll('tbody tr[data-jenjang]')).filter(tr => tr.style.display !== 'none').length;
-    if (totalVisible === 0) {
-        if (!emptyRow) {
-            const tr = document.createElement('tr');
-            tr.id = 'empty-row';
-            tr.innerHTML = `<td colspan="6" class="text-center text-muted">Belum ada instruktur untuk jenjang ini</td>`;
-            document.querySelector('tbody').appendChild(tr);
-        } else {
-            emptyRow.style.display = '';
-        }
-    } else {
-        if (emptyRow) {
-            emptyRow.style.display = 'none';
-        }
-    }
-
     // Persist in URL query param
     const url = new URL(window.location.href);
     url.searchParams.set('tab', jenjang);
     window.history.replaceState(null, '', url);
 }
-
-// On page load, check URL parameter
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('jenjangFilterTabs')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const initialTab = urlParams.get('tab') || 'ALL';
-        filterJenjang(initialTab);
-    }
-});
 </script>
 <?= $this->endSection() ?>

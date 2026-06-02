@@ -4,6 +4,18 @@
 Daftar Soal
 <?= $this->endSection() ?>
 
+<?= $this->section('styles') ?>
+<style>
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+      padding: 0 !important;
+      margin: 0 !important;
+  }
+  .dataTables_filter {
+      margin-bottom: 15px;
+  }
+</style>
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <div class="col-sm-12">
   <div class="card">
@@ -18,53 +30,49 @@ Daftar Soal
       </div>
     </div>
     <div class="card-body">
-      <!-- Filter by Level -->
-      <div class="mb-3">
-        <form method="GET" action="<?= site_url('soal') ?>">
-          <input type="hidden" name="tab" id="form-tab-input" value="<?= esc($_GET['tab'] ?? 'ALL') ?>">
-          <div class="row">
-            <div class="col-md-3">
-              <select name="level" class="form-select">
-                <option value="">Semua Level</option>
-                <?php foreach ($levels ?? [] as $level): ?>
-                  <option value="<?= $level['id_level'] ?>" <?= (isset($_GET['level']) && $_GET['level'] == $level['id_level']) ? 'selected' : '' ?>>
-                    <?= esc($level['nama_level']) ?> (<?= $level['nilai_min'] ?> - <?= $level['nilai_max'] ?>)
-                  </option>
-                <?php endforeach; ?>
+      <!-- Nav Tabs and Filter Level -->
+      <div class="row align-items-center mb-3">
+        <div class="col">
+          <?php if ($currentUser['hak_akses'] === 'ADMIN'): ?>
+          <ul class="nav nav-pills" id="jenjangFilterTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="tab-all" type="button" onclick="filterJenjang('ALL')">
+                <i class="ti ti-list"></i> Semua Jenjang
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab-elementary" type="button" onclick="filterJenjang('ELEMENTARY')">
+                <i class="ti ti-mood-smile"></i> Elementary
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="tab-highschool" type="button" onclick="filterJenjang('HIGH_SCHOOL')">
+                <i class="ti ti-school"></i> High School
+              </button>
+            </li>
+          </ul>
+          <?php endif; ?>
+        </div>
+        <div class="col-sm-auto mt-2 mt-sm-0">
+          <div class="d-flex align-items-center">
+            <div class="input-group input-group-sm" style="width: 200px;">
+              <span class="input-group-text bg-light text-muted border-end-0">
+                <i class="ti ti-filter"></i>
+              </span>
+              <select id="levelFilter" class="form-select border-start-0" onchange="applyFilters()">
+                <option value="ALL">Semua Level</option>
+                <option value="BEGINNER">BEGINNER</option>
+                <option value="INTERMEDIATE">INTERMEDIATE</option>
+                <option value="ADVANCED">ADVANCED</option>
               </select>
             </div>
-            <div class="col-md-2">
-              <button type="submit" class="btn btn-secondary">Filter</button>
-              <a href="<?= site_url('soal') ?>" id="reset-filter-btn" class="btn btn-outline-secondary">Reset</a>
-            </div>
           </div>
-        </form>
+        </div>
       </div>
-
-      <!-- Nav Tabs -->
-      <?php if ($currentUser['hak_akses'] === 'ADMIN'): ?>
-      <ul class="nav nav-pills mb-3" id="jenjangFilterTabs" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="tab-all" type="button" onclick="filterJenjang('ALL')">
-            <i class="ti ti-list"></i> Semua Jenjang
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tab-elementary" type="button" onclick="filterJenjang('ELEMENTARY')">
-            <i class="ti ti-mood-smile"></i> Elementary
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="tab-highschool" type="button" onclick="filterJenjang('HIGH_SCHOOL')">
-            <i class="ti ti-school"></i> High School
-          </button>
-        </li>
-      </ul>
-      <?php endif; ?>
 
       <!-- Questions Table -->
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id="soalTable">
           <thead>
             <tr>
               <th width="50">No</th>
@@ -77,52 +85,46 @@ Daftar Soal
             </tr>
           </thead>
           <tbody>
-            <?php if (empty($soal ?? [])): ?>
-              <tr id="empty-row">
-                <td colspan="7" class="text-center text-muted">Belum ada soal</td>
-              </tr>
-            <?php else: ?>
-              <?php
-                $no = 1;
-                $badgeColors = [
-                    'BEGINNER'     => 'bg-primary',
-                    'INTERMEDIATE' => 'bg-warning',
-                    'ADVANCED'     => 'bg-danger'
-                ];
-                foreach ($soal ?? [] as $s):
-                  $badgeClass = $badgeColors[$s['nama_level']] ?? 'bg-secondary';
-              ?>
-              <tr data-jenjang="<?= esc($s['jenjang']) ?>">
-                <td><?= $no++ ?></td>
-                <td>
-                  <div class="question-text"><?= character_limiter(strip_tags($s['pertanyaan']), 100) ?></div>
-                </td>
-                <td>
-                  <span class="badge <?= $s['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
-                    <?= $s['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
-                  </span>
-                </td>
-                <td><span class="badge <?= $badgeClass ?>"><?= esc($s['nama_level']) ?></span></td>
-                <td><span class="badge bg-primary"><?= esc($s['jawaban_benar']) ?></span></td>
-                <td>
-                  <span class="badge <?= $s['status'] === 'AKTIF' ? 'bg-success' : 'bg-danger' ?>">
-                    <?= esc($s['status']) ?>
-                  </span>
-                </td>
-                <td>
-                  <?php if (in_array($currentUser['hak_akses'] ?? '', ['ADMIN', 'INSTRUKTUR'])): ?>
-                  <a href="<?= site_url('soal/edit/' . $s['id_soal']) ?>" class="btn btn-sm btn-outline-primary">
-                    <i class="ti ti-pencil"></i> Edit
-                  </a>
-                  <button type="button" class="btn btn-sm btn-outline-danger"
-                          onclick="confirmDeleteSoal(<?= $s['id_soal'] ?>)">
-                    <i class="ti ti-trash"></i> Hapus
-                  </button>
-                  <?php endif; ?>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-            <?php endif; ?>
+            <?php
+              $no = 1;
+              $badgeColors = [
+                  'BEGINNER'     => 'bg-primary',
+                  'INTERMEDIATE' => 'bg-warning',
+                  'ADVANCED'     => 'bg-danger'
+              ];
+              foreach ($soal ?? [] as $s):
+                $badgeClass = $badgeColors[$s['nama_level']] ?? 'bg-secondary';
+            ?>
+            <tr data-jenjang="<?= esc($s['jenjang']) ?>" data-level="<?= esc($s['nama_level']) ?>">
+              <td><?= $no++ ?></td>
+              <td>
+                <div class="question-text"><?= character_limiter(strip_tags($s['pertanyaan']), 100) ?></div>
+              </td>
+              <td>
+                <span class="badge <?= $s['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
+                  <?= $s['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
+                </span>
+              </td>
+              <td><span class="badge <?= $badgeClass ?>"><?= esc($s['nama_level']) ?></span></td>
+              <td><span class="badge bg-primary"><?= esc($s['jawaban_benar']) ?></span></td>
+              <td>
+                <span class="badge <?= $s['status'] === 'AKTIF' ? 'bg-success' : 'bg-danger' ?>">
+                  <?= esc($s['status']) ?>
+                </span>
+              </td>
+              <td>
+                <?php if (in_array($currentUser['hak_akses'] ?? '', ['ADMIN', 'INSTRUKTUR'])): ?>
+                <a href="<?= site_url('soal/edit/' . $s['id_soal']) ?>" class="btn btn-sm btn-outline-primary">
+                  <i class="ti ti-pencil"></i> Edit
+                </a>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        onclick="confirmDeleteSoal(<?= $s['id_soal'] ?>)">
+                  <i class="ti ti-trash"></i> Hapus
+                </button>
+                <?php endif; ?>
+              </td>
+            </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>
@@ -133,6 +135,31 @@ Daftar Soal
 
 <?= $this->section('scripts') ?>
 <script>
+let table;
+
+$(document).ready(function() {
+    table = $('#soalTable').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
+        },
+        "columnDefs": [
+            { "orderable": false, "targets": [1, 6] } // disable sorting on pertanyaan & aksi
+        ],
+        "drawCallback": function(settings) {
+            // Apply dynamic index numbers
+            table.column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }
+    });
+
+    if (document.getElementById('jenjangFilterTabs')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const initialTab = urlParams.get('tab') || 'ALL';
+        filterJenjang(initialTab);
+    }
+});
+
 function confirmDeleteSoal(id) {
     toast.confirm(
         'Apakah Anda yakin ingin menghapus soal ini? Data yang dihapus tidak dapat dikembalikan.',
@@ -162,10 +189,13 @@ function confirmDeleteSoal(id) {
     );
 }
 
+let currentJenjang = 'ALL';
+let currentLevel = 'ALL';
+
 function filterJenjang(jenjang) {
-    // Check if the tabs container exists (e.g. only ADMIN has it)
-    const tabsContainer = document.getElementById('jenjangFilterTabs');
+    currentJenjang = jenjang;
     
+    const tabsContainer = document.getElementById('jenjangFilterTabs');
     if (tabsContainer) {
         // Update active class on tab buttons
         tabsContainer.querySelectorAll('.nav-link').forEach(btn => {
@@ -175,83 +205,46 @@ function filterJenjang(jenjang) {
         if (jenjang === 'ALL') {
             const btn = document.getElementById('tab-all');
             if (btn) btn.classList.add('active');
-            document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-                tr.style.display = '';
-            });
         } else if (jenjang === 'ELEMENTARY') {
             const btn = document.getElementById('tab-elementary');
             if (btn) btn.classList.add('active');
-            document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-                if (tr.getAttribute('data-jenjang') === 'ELEMENTARY') {
-                    tr.style.display = '';
-                } else {
-                    tr.style.display = 'none';
-                }
-            });
         } else if (jenjang === 'HIGH_SCHOOL') {
             const btn = document.getElementById('tab-highschool');
             if (btn) btn.classList.add('active');
-            document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-                if (tr.getAttribute('data-jenjang') === 'HIGH_SCHOOL') {
-                    tr.style.display = '';
-                } else {
-                    tr.style.display = 'none';
-                }
-            });
-        }
-        
-        // Update row numbers dynamically
-        let visibleIndex = 1;
-        document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-            if (tr.style.display !== 'none') {
-                tr.querySelector('td:first-child').textContent = visibleIndex++;
-            }
-        });
-        
-        // Manage empty row
-        const emptyRow = document.getElementById('empty-row');
-        const totalVisible = Array.from(document.querySelectorAll('tbody tr[data-jenjang]')).filter(tr => tr.style.display !== 'none').length;
-        if (totalVisible === 0) {
-            if (!emptyRow) {
-                const tr = document.createElement('tr');
-                tr.id = 'empty-row';
-                tr.innerHTML = `<td colspan="7" class="text-center text-muted">Belum ada soal untuk jenjang ini</td>`;
-                document.querySelector('tbody').appendChild(tr);
-            } else {
-                emptyRow.style.display = '';
-            }
-        } else {
-            if (emptyRow) {
-                emptyRow.style.display = 'none';
-            }
-        }
-
-        // Persist in URL query param
-        const url = new URL(window.location.href);
-        url.searchParams.set('tab', jenjang);
-        window.history.replaceState(null, '', url);
-
-        // Update hidden form input
-        const formTabInput = document.getElementById('form-tab-input');
-        if (formTabInput) {
-            formTabInput.value = jenjang;
-        }
-
-        // Update Reset button URL
-        const resetBtn = document.getElementById('reset-filter-btn');
-        if (resetBtn) {
-            resetBtn.href = '<?= site_url('soal') ?>' + '?tab=' + jenjang;
         }
     }
+    
+    // Persist in URL query param
+    const url = new URL(window.location.href);
+    url.searchParams.set('tab', jenjang);
+    window.history.replaceState(null, '', url);
+
+    applyFilters();
 }
 
-// On page load, check URL parameter
-document.addEventListener('DOMContentLoaded', function() {
-    if (document.getElementById('jenjangFilterTabs')) {
-        const urlParams = new URLSearchParams(window.location.search);
-        const initialTab = urlParams.get('tab') || 'ALL';
-        filterJenjang(initialTab);
+function applyFilters() {
+    if (!table) return;
+
+    const levelSelect = document.getElementById('levelFilter');
+    currentLevel = levelSelect ? levelSelect.value : 'ALL';
+    
+    // Filter Jenjang on column index 2
+    if (currentJenjang === 'ALL') {
+        table.column(2).search('');
+    } else if (currentJenjang === 'ELEMENTARY') {
+        table.column(2).search('ELEMENTARY');
+    } else if (currentJenjang === 'HIGH_SCHOOL') {
+        table.column(2).search('HIGH SCHOOL');
     }
-});
+    
+    // Filter Level on column index 3 (which holds level badge)
+    if (currentLevel === 'ALL') {
+        table.column(3).search('');
+    } else {
+        table.column(3).search(currentLevel);
+    }
+    
+    table.draw();
+}
 </script>
 <?= $this->endSection() ?>

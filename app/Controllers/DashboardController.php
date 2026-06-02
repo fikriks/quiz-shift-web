@@ -15,6 +15,10 @@ class DashboardController extends BaseController
         // Get user statistics based on role
         $this->data['userStats'] = $this->getUserStats();
 
+        // Get all levels
+        $levelModel = new \App\Models\LevelModel();
+        $this->data['levels'] = $levelModel->getAllOrdered();
+
         return view('dashboard/index', $this->data);
     }
 

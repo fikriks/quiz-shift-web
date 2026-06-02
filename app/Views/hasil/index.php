@@ -36,19 +36,23 @@ Hasil Kuis
         </div>
         <div class="col-sm-auto mt-2 mt-sm-0">
           <div class="d-flex align-items-center">
-            <label class="me-2 mb-0 text-nowrap">Filter Level:</label>
-            <select id="levelFilter" class="form-select form-select-sm" style="width: 180px;" onchange="applyFilters()">
-              <option value="ALL">Semua Level</option>
-              <option value="BEGINNER">BEGINNER</option>
-              <option value="INTERMEDIATE">INTERMEDIATE</option>
-              <option value="ADVANCED">ADVANCED</option>
-            </select>
+            <div class="input-group input-group-sm" style="width: 200px;">
+              <span class="input-group-text bg-light text-muted border-end-0">
+                <i class="ti ti-filter"></i>
+              </span>
+              <select id="levelFilter" class="form-select border-start-0" onchange="applyFilters()">
+                <option value="ALL">Semua Level</option>
+                <option value="BEGINNER">BEGINNER</option>
+                <option value="INTERMEDIATE">INTERMEDIATE</option>
+                <option value="ADVANCED">ADVANCED</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id="hasilTable">
           <thead>
             <tr>
               <th width="50">No</th>
@@ -63,55 +67,49 @@ Hasil Kuis
             </tr>
           </thead>
           <tbody>
-            <?php if (empty($hasil ?? [])): ?>
-              <tr id="empty-row">
-                <td colspan="9" class="text-center text-muted">Belum ada hasil kuis</td>
-              </tr>
-            <?php else: ?>
-              <?php $no = 1; foreach ($hasil ?? [] as $h): ?>
-              <tr data-jenjang="<?= esc($h['jenjang']) ?>" data-level="<?= esc($h['level_ditetapkan'] ?? '') ?>">
-                <td><?= $no++ ?></td>
-                <td><?= esc($h['nama_kuis']) ?></td>
-                <td><?= esc($h['nama_lengkap']) ?></td>
-                <td>
-                  <span class="badge <?= $h['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
-                    <?= $h['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
-                  </span>
-                </td>
-                <td><?= esc($h['waktu_mulai']) ?></td>
-                <td><?= esc($h['waktu_selesai'] ?? '-') ?></td>
-                <td>
-                  <span class="badge bg-primary"><?= esc($h['total_nilai']) ?></span>
-                </td>
-                <td>
-                  <?php if ($h['level_ditetapkan']): ?>
-                    <?php
-                    $levelClass = match($h['level_ditetapkan']) {
-                      'BEGINNER' => 'bg-success',
-                      'INTERMEDIATE' => 'bg-info',
-                      'ADVANCED' => 'bg-warning',
-                      default => 'bg-secondary'
-                    };
-                    ?>
-                    <span class="badge <?= $levelClass ?>"><?= esc($h['level_ditetapkan']) ?></span>
-                  <?php else: ?>
-                    -
-                  <?php endif; ?>
-                </td>
-                <td>
-                  <a href="<?= site_url('hasil/' . $h['id_kuis']) ?>" class="btn btn-sm btn-outline-primary">
-                    <i class="ti ti-eye"></i> Detail
-                  </a>
-                  <?php if ($currentUser['hak_akses'] === 'ADMIN'): ?>
-                  <button type="button" class="btn btn-sm btn-outline-danger"
-                          onclick="confirmDeleteHasil(<?= $h['id_kuis'] ?>)">
-                    <i class="ti ti-trash"></i> Hapus
-                  </button>
-                  <?php endif; ?>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-            <?php endif; ?>
+            <?php $no = 1; foreach ($hasil ?? [] as $h): ?>
+            <tr data-jenjang="<?= esc($h['jenjang']) ?>" data-level="<?= esc($h['level_ditetapkan'] ?? '') ?>">
+              <td><?= $no++ ?></td>
+              <td><?= esc($h['nama_kuis']) ?></td>
+              <td><?= esc($h['nama_lengkap']) ?></td>
+              <td>
+                <span class="badge <?= $h['jenjang'] === 'ELEMENTARY' ? 'bg-info' : 'bg-secondary' ?>">
+                  <?= $h['jenjang'] === 'ELEMENTARY' ? 'ELEMENTARY' : 'HIGH SCHOOL' ?>
+                </span>
+              </td>
+              <td><?= esc($h['waktu_mulai']) ?></td>
+              <td><?= esc($h['waktu_selesai'] ?? '-') ?></td>
+              <td>
+                <span class="badge bg-primary"><?= esc($h['total_nilai']) ?></span>
+              </td>
+              <td>
+                <?php if ($h['level_ditetapkan']): ?>
+                  <?php
+                  $levelClass = match($h['level_ditetapkan']) {
+                    'BEGINNER' => 'bg-primary',
+                    'INTERMEDIATE' => 'bg-warning text-dark',
+                    'ADVANCED' => 'bg-danger',
+                    default => 'bg-secondary'
+                  };
+                  ?>
+                  <span class="badge <?= $levelClass ?>"><?= esc($h['level_ditetapkan']) ?></span>
+                <?php else: ?>
+                  -
+                <?php endif; ?>
+              </td>
+              <td>
+                <a href="<?= site_url('hasil/' . $h['id_kuis']) ?>" class="btn btn-sm btn-outline-primary">
+                  <i class="ti ti-eye"></i> Detail
+                </a>
+                <?php if ($currentUser['hak_akses'] === 'ADMIN'): ?>
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        onclick="confirmDeleteHasil(<?= $h['id_kuis'] ?>)">
+                  <i class="ti ti-trash"></i> Hapus
+                </button>
+                <?php endif; ?>
+              </td>
+            </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>
@@ -122,6 +120,31 @@ Hasil Kuis
 
 <?= $this->section('scripts') ?>
 <script>
+let table;
+let currentJenjang = 'ALL';
+let currentLevel = 'ALL';
+
+$(document).ready(function() {
+    table = $('#hasilTable').DataTable({
+        "language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
+        },
+        "columnDefs": [
+            { "orderable": false, "targets": [8] } // disable sorting on aksi
+        ],
+        "drawCallback": function(settings) {
+            let api = this.api();
+            api.column(0, {search:'applied', order:'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialTab = urlParams.get('tab') || 'ALL';
+    filterJenjang(initialTab);
+});
+
 function confirmDeleteHasil(id) {
     toast.confirm(
         'Apakah Anda yakin ingin menghapus hasil kuis ini? Data yang dihapus tidak dapat dikembalikan.',
@@ -150,9 +173,6 @@ function confirmDeleteHasil(id) {
         }
     );
 }
-
-let currentJenjang = 'ALL';
-let currentLevel = 'ALL';
 
 function filterJenjang(jenjang) {
     currentJenjang = jenjang;
@@ -184,56 +204,28 @@ function filterJenjang(jenjang) {
 }
 
 function applyFilters() {
+    if (!table) return;
+
     const levelSelect = document.getElementById('levelFilter');
     currentLevel = levelSelect ? levelSelect.value : 'ALL';
     
-    document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-        const rowJenjang = tr.getAttribute('data-jenjang');
-        const rowLevel = tr.getAttribute('data-level');
-        
-        const matchesJenjang = (currentJenjang === 'ALL' || rowJenjang === currentJenjang);
-        const matchesLevel = (currentLevel === 'ALL' || rowLevel === currentLevel);
-        
-        if (matchesJenjang && matchesLevel) {
-            tr.style.display = '';
-        } else {
-            tr.style.display = 'none';
-        }
-    });
-    
-    // Update row numbers dynamically
-    let visibleIndex = 1;
-    document.querySelectorAll('tbody tr[data-jenjang]').forEach(tr => {
-        if (tr.style.display !== 'none') {
-            tr.querySelector('td:first-child').textContent = visibleIndex++;
-        }
-    });
-    
-    // Manage empty row
-    const emptyRow = document.getElementById('empty-row');
-    const totalVisible = Array.from(document.querySelectorAll('tbody tr[data-jenjang]')).filter(tr => tr.style.display !== 'none').length;
-    if (totalVisible === 0) {
-        if (!emptyRow) {
-            const tr = document.createElement('tr');
-            tr.id = 'empty-row';
-            tr.innerHTML = `<td colspan="9" class="text-center text-muted">Belum ada hasil kuis untuk filter ini</td>`;
-            document.querySelector('tbody').appendChild(tr);
-        } else {
-            emptyRow.style.display = '';
-            emptyRow.querySelector('td').textContent = 'Belum ada hasil kuis untuk filter ini';
-        }
-    } else {
-        if (emptyRow) {
-            emptyRow.style.display = 'none';
-        }
+    // Filter Jenjang on column index 3
+    if (currentJenjang === 'ALL') {
+        table.column(3).search('');
+    } else if (currentJenjang === 'ELEMENTARY') {
+        table.column(3).search('ELEMENTARY');
+    } else if (currentJenjang === 'HIGH_SCHOOL') {
+        table.column(3).search('HIGH SCHOOL');
     }
+    
+    // Filter Level on column index 7
+    if (currentLevel === 'ALL') {
+        table.column(7).search('');
+    } else {
+        table.column(7).search(currentLevel);
+    }
+    
+    table.draw();
 }
-
-// On page load, check URL parameter
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const initialTab = urlParams.get('tab') || 'ALL';
-    filterJenjang(initialTab);
-});
 </script>
 <?= $this->endSection() ?>

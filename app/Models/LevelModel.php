@@ -17,6 +17,7 @@ class LevelModel extends Model
         'deskripsi',
         'nilai_min',
         'nilai_max',
+        'waktu_pengerjaan',
     ];
 
     // Dates
@@ -30,6 +31,7 @@ class LevelModel extends Model
         'nama_level' => 'required|in_list[BEGINNER,INTERMEDIATE,ADVANCED]',
         'nilai_min'  => 'required|integer|greater_than_equal_to[0]',
         'nilai_max'  => 'required|integer|greater_than_equal_to[0]',
+        'waktu_pengerjaan' => 'required|integer|greater_than[0]',
     ];
     protected $validationMessages   = [
         'nama_level' => [
@@ -45,6 +47,11 @@ class LevelModel extends Model
             'required'             => 'Nilai maksimum harus diisi',
             'integer'              => 'Nilai maksimum harus berupa angka',
             'greater_than_equal_to' => 'Nilai maksimum tidak boleh negatif',
+        ],
+        'waktu_pengerjaan' => [
+            'required'      => 'Waktu pengerjaan harus diisi',
+            'integer'       => 'Waktu pengerjaan harus berupa angka',
+            'greater_than'  => 'Waktu pengerjaan harus lebih dari 0',
         ],
     ];
     protected $skipValidation       = false;

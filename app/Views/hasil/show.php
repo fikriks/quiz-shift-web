@@ -38,6 +38,10 @@ Detail Hasil Kuis
           <td>Status</td>
           <td>: <span class="badge bg-success"><?= esc($kuis['status']) ?></span></td>
         </tr>
+        <tr>
+          <td>Total Durasi</td>
+          <td>: <?= esc($total_waktu ?? 0) ?> menit</td>
+        </tr>
       </table>
     </div>
   </div>

@@ -126,21 +126,25 @@ class KuisModel extends Model
             'level_ditetapkan' => $namaLevel,
         ]);
 
+        $allLevels = $levelModel->findAll();
+        $totalWaktuPengerjaan = array_sum(array_column($allLevels, 'waktu_pengerjaan'));
+
         return [
-            'id_kuis'          => (int) $id_kuis,
-            'id_peserta'       => (int) $kuis['id_peserta'],
-            'total_nilai'      => (int) $nilai,
-            'persentase'       => (int) $nilai,
-            'level_ditetapkan' => $namaLevel,
-            'status'           => 'SELESAI',
-            'waktu_mulai'      => $kuis['waktu_mulai'],
-            'waktu_selesai'    => $waktuSelesai,
-            'total_benar'      => (int) $totalBenar,
-            'total_salah'      => (int) $totalSalah,
-            'total_soal'       => (int) $totalSoal,
+            'id_kuis'           => (int) $id_kuis,
+            'id_peserta'        => (int) $kuis['id_peserta'],
+            'total_nilai'       => (int) $nilai,
+            'persentase'        => (int) $nilai,
+            'level_ditetapkan'  => $namaLevel,
+            'status'            => 'SELESAI',
+            'waktu_mulai'       => $kuis['waktu_mulai'],
+            'waktu_selesai'     => $waktuSelesai,
+            'waktu_pengerjaan'  => $totalWaktuPengerjaan,
+            'total_benar'       => (int) $totalBenar,
+            'total_salah'       => (int) $totalSalah,
+            'total_soal'        => (int) $totalSoal,
             // Keep for backwards compatibility
-            'nilai'            => (int) $nilai,
-            'level'            => $namaLevel,
+            'nilai'             => (int) $nilai,
+            'level'             => $namaLevel,
         ];
     }
 

@@ -7,6 +7,7 @@ use App\Libraries\FisherYates;
 use App\Models\KuisModel;
 use App\Models\DetailKuisModel;
 use App\Models\SoalModel;
+use App\Models\LevelModel;
 
 class ApiKuisController extends ResourceController
 {
@@ -50,6 +51,10 @@ class ApiKuisController extends ResourceController
         // Check if there's an active quiz
         $activeKuis = $this->kuisModel->getActiveKuis($peserta['id_peserta']);
 
+        $levelModel = new LevelModel();
+        $allLevels = $levelModel->findAll();
+        $totalWaktuPengerjaan = array_sum(array_column($allLevels, 'waktu_pengerjaan'));
+
         if ($activeKuis) {
             // Get questions for the active quiz from detail_kuis
             $detailKuis = $this->detailKuisModel->getDetailKuisWithSoal($activeKuis['id_kuis']);
@@ -85,6 +90,7 @@ class ApiKuisController extends ResourceController
                     'total_soal'  => count($soalForClient),
                     'waktu_mulai' => $activeKuis['waktu_mulai'],
                     'status'      => $activeKuis['status'],
+                    'waktu_pengerjaan' => $totalWaktuPengerjaan,
                 ],
             ])->setStatusCode(200);
         }
@@ -139,6 +145,7 @@ class ApiKuisController extends ResourceController
                 'id_kuis' => $id_kuis,
                 'soal'    => $soalForClient,
                 'total_soal' => count($soalForClient),
+                'waktu_pengerjaan' => $totalWaktuPengerjaan,
             ],
         ])->setStatusCode(201);
     }

@@ -25,6 +25,7 @@ Daftar Level
               <th>Deskripsi</th>
               <th width="100">Nilai Min</th>
               <th width="100">Nilai Max</th>
+              <th width="100">Waktu (menit)</th>
               <th width="200">Aksi</th>
             </tr>
           </thead>
@@ -45,6 +46,7 @@ Daftar Level
               <td><?= esc($level['deskripsi'] ?? '-') ?></td>
               <td><?= esc($level['nilai_min']) ?></td>
               <td><?= esc($level['nilai_max']) ?></td>
+              <td><?= esc($level['waktu_pengerjaan'] ?? '-') ?></td>
               <td>
                 <a href="<?= site_url('level/edit/' . $level['id_level']) ?>" class="btn btn-sm btn-outline-primary">
                   <i class="ti ti-pencil"></i> Edit
@@ -72,7 +74,7 @@ $(document).ready(function() {
             "url": "https://cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
         },
         "columnDefs": [
-            { "orderable": false, "targets": [2, 5] } // disable sorting on deskripsi & aksi
+            { "orderable": false, "targets": [2, 6] } // disable sorting on deskripsi & aksi
         ],
         "drawCallback": function(settings) {
             let api = this.api();

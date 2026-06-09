@@ -49,10 +49,11 @@ class LevelController extends BaseController
         }
 
         $data = [
-            'nama_level' => $this->request->getPost('nama_level'),
-            'deskripsi'  => $this->request->getPost('deskripsi'),
-            'nilai_min'  => $nilai_min,
-            'nilai_max'  => $nilai_max,
+            'nama_level'       => $this->request->getPost('nama_level'),
+            'deskripsi'        => $this->request->getPost('deskripsi'),
+            'nilai_min'        => $nilai_min,
+            'nilai_max'        => $nilai_max,
+            'waktu_pengerjaan' => $this->request->getPost('waktu_pengerjaan'),
         ];
 
         if ($this->levelModel->insert($data)) {
@@ -94,10 +95,11 @@ class LevelController extends BaseController
         }
 
         $data = [
-            'nama_level' => $this->request->getPost('nama_level'),
-            'deskripsi'  => $this->request->getPost('deskripsi'),
-            'nilai_min'  => $nilai_min,
-            'nilai_max'  => $nilai_max,
+            'nama_level'       => $this->request->getPost('nama_level'),
+            'deskripsi'        => $this->request->getPost('deskripsi'),
+            'nilai_min'        => $nilai_min,
+            'nilai_max'        => $nilai_max,
+            'waktu_pengerjaan' => $this->request->getPost('waktu_pengerjaan'),
         ];
 
         if ($this->levelModel->update($id, $data)) {

@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\KuisModel;
 use App\Models\DetailKuisModel;
 use App\Models\PesertaModel;
+use App\Models\LevelModel;
 
 class HasilController extends BaseController
 {
@@ -63,6 +64,10 @@ class HasilController extends BaseController
             'total_salah' => $totalSoal - $totalBenar,
             'persentase'  => $totalSoal > 0 ? round(($totalBenar / $totalSoal) * 100) : 0,
         ];
+
+        $levelModel = new LevelModel();
+        $allLevels = $levelModel->findAll();
+        $this->data['total_waktu'] = array_sum(array_column($allLevels, 'waktu_pengerjaan'));
 
         return view('hasil/show', $this->data);
     }

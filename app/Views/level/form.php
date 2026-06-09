@@ -31,18 +31,26 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="mb-3">
               <label class="form-label">Nilai Minimum *</label>
               <input type="number" name="nilai_min" class="form-control" placeholder="0"
                      value="<?= esc($level['nilai_min'] ?? old('nilai_min')) ?>" required min="0">
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="mb-3">
               <label class="form-label">Nilai Maksimum *</label>
               <input type="number" name="nilai_max" class="form-control" placeholder="100"
                      value="<?= esc($level['nilai_max'] ?? old('nilai_max')) ?>" required min="0">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label class="form-label">Waktu Pengerjaan (menit) *</label>
+              <input type="number" name="waktu_pengerjaan" class="form-control" placeholder="15"
+                     value="<?= esc($level['waktu_pengerjaan'] ?? old('waktu_pengerjaan', 15)) ?>"
+                     required min="1">
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ namespace App\Controllers\Api;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\KuisModel;
 use App\Models\DetailKuisModel;
+use App\Models\LevelModel;
 
 class ApiHasilController extends ResourceController
 {
@@ -96,13 +97,18 @@ class ApiHasilController extends ResourceController
             'persentase'  => $totalSoal > 0 ? round(($totalBenar / $totalSoal) * 100) : 0,
         ];
 
+        $levelModel = new LevelModel();
+        $allLevels = $levelModel->findAll();
+        $waktuPengerjaan = array_sum(array_column($allLevels, 'waktu_pengerjaan'));
+
         return $this->response->setJSON([
             'status'  => 'success',
             'message' => 'Detail hasil kuis berhasil diambil',
             'data'    => [
-                'kuis'      => $kuis,
-                'detail'    => $detail,
-                'statistik' => $statistik,
+                'kuis'             => $kuis,
+                'detail'           => $detail,
+                'statistik'        => $statistik,
+                'waktu_pengerjaan' => $waktuPengerjaan,
             ],
         ])->setStatusCode(200);
     }
@@ -151,13 +157,18 @@ class ApiHasilController extends ResourceController
             'persentase'  => $totalSoal > 0 ? round(($totalBenar / $totalSoal) * 100) : 0,
         ];
 
+        $levelModel = new LevelModel();
+        $allLevels = $levelModel->findAll();
+        $waktuPengerjaan = array_sum(array_column($allLevels, 'waktu_pengerjaan'));
+
         return $this->response->setJSON([
             'status'  => 'success',
             'message' => 'Hasil kuis terbaru berhasil diambil',
             'data'    => [
-                'kuis'      => $latestKuis,
-                'detail'    => $detail,
-                'statistik' => $statistik,
+                'kuis'             => $latestKuis,
+                'detail'           => $detail,
+                'statistik'        => $statistik,
+                'waktu_pengerjaan' => $waktuPengerjaan,
             ],
         ])->setStatusCode(200);
     }
